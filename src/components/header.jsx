@@ -8,7 +8,7 @@ function Header(){
             <nav className={style.navHeader}>
                 <Link to="/">Home</Link>
                 <Link to="/lista-locais">Lista de locais</Link>
-                <Link to="/cadastro">Cadastro</Link>
+                <Link to="/cadastro-local">Cadastro Local</Link>
                 <Link to="/login">Login</Link>
             </nav>
         </div>

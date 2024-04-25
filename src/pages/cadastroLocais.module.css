@@ -1,0 +1,33 @@
+.divContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 80vw; */
+}
+
+.divFormCadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 600px; */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.divTextField{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divTextField2{
+    display: flex;
+    justify-content:space-between;
+    gap: 20px;
+}
+
+.formGroupOptions{
+    display: flex;
+}

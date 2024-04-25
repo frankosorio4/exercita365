@@ -31,7 +31,7 @@ const routes = createBrowserRouter(
                     element:<Dashboard/>
                 },
                 {
-                    path: "/cadastro",
+                    path: "/cadastro-local",
                     element:<Cadastro/>
                 },
                 {
