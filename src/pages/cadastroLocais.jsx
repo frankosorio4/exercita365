@@ -1,18 +1,35 @@
 import style from "./loginCadastro.module.css"
-import { TextField, Select, Button, MenuItem } from "@mui/material"
+import { TextField, Button, Select, MenuItem } from "@mui/material"
 import { FormControlLabel, Checkbox, FormGroup, FormLabel } from "@mui/material"
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import styles from "./cadastroLocais.module.css"
-
+import { useContext, useState } from "react"
+import { FetchContext } from "../context/FetchContext"
 
 function Cadastro() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm()
 
-    function onSubmit(form1Values) {
-        console.log(form1Values);
+    function onSubmit(formValues) {
+        requestApi('https://viacep.com.br/ws/88047470/json/');
+        ( validValue && setCepApi(data) )
+        console.log(formValues,validValue,data)
+    };
+
+    // function validCep(){
+    //      console.log(setCepApi)
+    //    //debugger
+    //     //console.log('https://viacep.com.br/ws/'+Number({cep})+'/json/')
+    //     // requestApi('https://viacep.com.br/ws/'+Number({cep})+'/json/');
+    //     // ( validValue && setCepApi(data) )
+    // }
+
+    const [cepApi, setCepApi] = useState('');
+    
+    const handleChange = (e) => {
+        setCepApi(e.target.value); // Update the state with the value of the TextField
     };
 
     const options = [
@@ -22,6 +39,7 @@ function Cadastro() {
         { label: 'Nataçao', value: 'natacao' }
     ];
 
+    const {requestApi, data, validValue} = useContext(FetchContext);
 
     return (
         <div className={styles.divContainer}>
@@ -133,6 +151,7 @@ function Cadastro() {
                             type="number"
                             sx={{ mt: 1, width: '16em' }}
                             variant="outlined"
+                            onChange={handleChange}
                             {...register("cep",
                                 {
                                     required: "Campo Obrigatorio",
@@ -201,6 +220,10 @@ function Cadastro() {
                         {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
                     </div>
                 </div>
+
+                <p>{cepApi} hola </p>
+                {data && <p>Here {data.cep} {data.logradouro}</p>}
+
 
                 <div className={style.divTextField2}>
                     <div className={style.divTextField}>

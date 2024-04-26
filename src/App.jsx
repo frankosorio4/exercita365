@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom"
 import Header from "./components/header";
+import { FetchContextProviders } from "./context/FetchContext";
 
 function App() {
 
   return (
-    <div>
-      <Header/>
-      <Outlet/>
-    </div>
+    <FetchContextProviders>
+
+      <Header />
+
+      <Outlet />
+      
+    </FetchContextProviders>
   )
 }
 
