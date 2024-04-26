@@ -224,7 +224,7 @@ function Login() {
                                 type="number"
                                 sx={{ mt: 1, width: '11em' }}
                                 variant="outlined"
-                                {...register("numeroCasa",
+                                {...register("numCasa",
                                     {
                                         required: "Campo Obrigatorio",
                                         minLength: {
@@ -239,7 +239,7 @@ function Login() {
                                 )
                                 }
                             />
-                            {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
+                            {errors.numCasa && <p className={style.pError}>{errors.numCasa.message}</p>}
                         </div>
 
                         <div className={style.divTextField}>
@@ -264,7 +264,7 @@ function Login() {
                                 )
                                 }
                             />
-                            {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
+                            {errors.complemento && <p className={style.pError}>{errors.complemento.message}</p>}
                         </div>
                     </div>
 
