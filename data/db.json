@@ -1,4 +1,4 @@
-{"listalocais":[
+{"listaUsuarios":[
     {   "id": 1,
         "nome": "Frank Osorio",
         "cpf": "12345678910",
@@ -8,51 +8,70 @@
         "cep": "88047470",
         "numCasa": "20",
         "complemento": "3b",
-        "senha": "123456"
+        "senha": "123456",
+        "online": "false"
     },
     {   "id": 2,
         "nome": "Donie Lacruz",
         "cpf": "08635193008",
         "sexo": "Masculino",
         "dataNasc": "1985-01-03",
-        "email": "frank@email.com",
+        "email": "donie@email.com",
         "cep": "88025318",
         "numCasa": "765",
         "complemento": "1",
-        "senha": "123456"
+        "senha": "123456",
+        "online": "false"
     },
     {   "id": 3,
         "nome": "Luis Antonio",
         "cpf": "03532040050",
         "sexo": "Masculino",
         "dataNasc": "1992-12-07",
-        "email": "frank@email.com",
+        "email": "luis@email.com",
         "cep": "88067001",
         "numCasa": "159",
         "complemento": "1",
-        "senha": "123456"
+        "senha": "123456",
+        "online": "false"
     },
     {   "id": 4,
         "nome": "Ana Zerpa",
         "cpf": "52678470032",
         "sexo": "Feminino",
         "dataNasc": "1990-06-10",
-        "email": "frank@email.com",
+        "email": "ana@email.com",
         "cep": "88053526",
         "numCasa": "123",
         "complemento": "5",
-        "senha": "123456"
+        "senha": "123456",
+        "online": "false"
     },
     {   "id": 5,
         "nome": "Sara Oliveira",
         "cpf": "90923405020",
         "sexo": "Feminino",
         "dataNasc": "2005-10-01",
-        "email": "frank@email.com",
+        "email": "sara@email.com",
         "cep": "88037625",
         "numCasa": "15",
         "complemento": "2b",
-        "senha": "123456"
+        "senha": "123456",
+        "online": "false"
+    }
+],
+"listaLocais":[
+    {   "id": 1,
+        "nome": "Frank Osorio",
+        "cpf": "12345678910",
+        "email": "frank@email.com",
+        "descricao": "88047470",
+        "cep": "88047470",
+        "numCasa": "20",
+        "complemento": "3b",
+        "latitude": "123456",
+        "longitude": "false",
+        "localExcercises": "musculacao"
     }
 ]
 }

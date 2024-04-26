@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export const FetchContext = createContext();
 
-export const FetchContextProviders = ( {children} ) => {
+export const FetchContextProvider = ( {children} ) => {
 
     const [data, setData] = useState([]);
     const [validValue,setValidValue] = useState(false)
