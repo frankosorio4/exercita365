@@ -16,9 +16,9 @@ export const FetchContextProvider = ( {children} ) => {
             setValidValue(true)
         })
         .catch(error =>{
-            window.alert("Request Error");
+            //window.alert("Request Error");
             console.error(error);
-            setValidValue(false)
+            setValidValue(false);
         })
     }
 

@@ -8,14 +8,14 @@ export const UsuarioContextProvider = ( {children} ) => {
 
     useEffect( () =>
         readUser()
-    ,[])
+    ,[]);
 
     function readUser(){
         fetch("http://localhost:3000/listaUsuarios")
         .then(response => response.json())
-        .then(dados => setUsuarios(dados))
-        .catch(erro => console.log(erro))
-    }
+        .then(data => setUsuarios(data))
+        .catch(error => console.log(error))
+    };
 
     return(
         <UsuarioContext.Provider value={{usuarios}}>

@@ -10,36 +10,36 @@ import { FetchContext } from "../context/FetchContext"
 function Cadastro() {
 
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
+    const { requestApi, data, validValue } = useContext(FetchContext);
 
     function onSubmit(formValues) {
-        requestApi('https://viacep.com.br/ws/88047470/json/');
-        ( validValue && setCepApi(data) )
-        console.log(formValues,validValue,data)
+        //requestApi('https://viacep.com.br/ws/88047470/json/');
+        //( validValue && setCepApi(data) )
+        console.log(formValues, validValue, data)
+        //TO DO SAVE DATA NO JSOM
     };
 
-    // function validCep(){
-    //      console.log(setCepApi)
-    //    //debugger
-    //     //console.log('https://viacep.com.br/ws/'+Number({cep})+'/json/')
-    //     // requestApi('https://viacep.com.br/ws/'+Number({cep})+'/json/');
-    //     // ( validValue && setCepApi(data) )
-    // }
+    const searchCep = async () => {
+        //debugger
+        let cepInput = getValues('cep');
 
-    const [cepApi, setCepApi] = useState('');
-    
-    const handleChange = (e) => {
-        setCepApi(e.target.value); // Update the state with the value of the TextField
+        console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
+        await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
+        console.log(data);
+        setValue('bairro', data.bairro);
+        setValue('logradouro', data.logradouro);
+        setValue('estado', data.uf);
+        setValue('cidade', data.localidade);
+        console.log(data.erro);
     };
 
     const options = [
         { label: 'Musculaçao', value: 'musculacao' },
         { label: 'Trillas', value: 'trilhas' },
-        { label: 'Pilates', value: 'Pilates' },
+        { label: 'Pilates', value: 'pilates' },
         { label: 'Nataçao', value: 'natacao' }
     ];
-
-    const {requestApi, data, validValue} = useContext(FetchContext);
 
     return (
         <div className={styles.divContainer}>
@@ -50,6 +50,7 @@ function Cadastro() {
                     <div>Nome do local</div>
                     <TextField
                         fullWidth
+                        name="nome"
                         type="text"
                         sx={{ mt: 1, width: '37em' }}
                         variant="outlined"
@@ -76,6 +77,7 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>CPF do usuario</div>
                         <TextField
+                            name="cpf"                        
                             placeholder="CPF"
                             type="number"
                             sx={{ mt: 1, width: '18em' }}
@@ -100,6 +102,7 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>E-mail de usuario</div>
                         <TextField
+                            name="email"
                             type="email"
                             sx={{ mt: 1, width: '18em' }}
                             variant="outlined"
@@ -118,6 +121,7 @@ function Cadastro() {
                 <div className={style.divTextField}>
                     <div>Descriçao do local</div>
                     <TextField
+                        name="descricao"
                         placeholder="Descriçao breve do local, no maximo 300 caracteres"
                         type="text"
                         multiline
@@ -138,7 +142,7 @@ function Cadastro() {
                             }
                         )
                         }
-                        // textValue={errors.descricao?.message || "Descrição breve do local"}
+                    // textValue={errors.descricao?.message || "Descrição breve do local"}
                     />
                     {errors.descricao && <p className={style.pError}>{errors.descricao.message}</p>}
                 </div>
@@ -147,14 +151,16 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>CEP</div>
                         <TextField
+                            name="cep"
                             placeholder="CEP"
                             type="number"
                             sx={{ mt: 1, width: '16em' }}
                             variant="outlined"
-                            onChange={handleChange}
+                            // onChange={handleChange}
                             {...register("cep",
                                 {
                                     required: "Campo Obrigatorio",
+                                    onBlur: () => searchCep(),
                                     minLength: {
                                         value: 8,
                                         message: "Mínimo 8 caracteres"
@@ -173,6 +179,7 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>Numero do local</div>
                         <TextField
+                            name="numeroCasa"
                             placeholder="Numero da casa"
                             type="number"
                             sx={{ mt: 1, width: '11em' }}
@@ -198,6 +205,7 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>Complemento</div>
                         <TextField
+                            name="complemento"
                             placeholder="Complemento"
                             type="text"
                             sx={{ mt: 1, width: '8em' }}
@@ -220,15 +228,15 @@ function Cadastro() {
                         {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
                     </div>
                 </div>
-
-                <p>{cepApi} hola </p>
-                {data && <p>Here {data.cep} {data.logradouro}</p>}
-
+                {/* !data.erro value that comes from API */}
+                {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
+                {!validValue && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>}
 
                 <div className={style.divTextField2}>
                     <div className={style.divTextField}>
                         <div>Latitude</div>
                         <TextField
+                            name="latitude"
                             placeholder="Em graus decimais"
                             type="number"
                             sx={{ mt: 1, width: '18em' }}
@@ -252,6 +260,7 @@ function Cadastro() {
                     <div className={style.divTextField}>
                         <div>Longitude</div>
                         <TextField
+                            name="longitude"
                             placeholder="Em graus decimais"
                             type="number"
                             inputProps={{ step: 'any', min: -180, max: 180 }}
@@ -279,10 +288,11 @@ function Cadastro() {
                     <FormGroup row>
                         {options.map((option) => (
                             <FormControlLabel
+                                name="localExcercises"
                                 key={option.value}
                                 control={
                                     <Checkbox
-                                    {...register('localExcercises', { required: true })}
+                                        {...register('localExcercises', { required: true })}
                                         value={option.value}
                                     />
                                 }

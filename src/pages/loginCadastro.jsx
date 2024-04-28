@@ -31,17 +31,21 @@ function Login() {
                     <div className={style.divTextField}>
                         <div>Email de usuario</div>
                         <TextField
+                            name="email"
                             type="email"
                             sx={{ mt: 1 }}
                             variant="outlined"
                             placeholder="usuario@email.com"
-                            {...registerLogin("email")}
+                            {...registerLogin("email",
+                            {required: "Campo Obrigatorio"}
+                        )}
                         />
                         {loginErrors.email && <p className={style.pError}>{loginErrors.email.message}</p>}
                     </div>
                     <div className={style.divTextField}>
                         <div>Senha</div>
                         <TextField
+                            name="senha"
                             type="password"
                             sx={{ mt: 1 }}
                             variant="outlined"
@@ -90,6 +94,7 @@ function Login() {
                         <div>Nome de usuario</div>
                         <TextField
                             fullWidth
+                            name="nome"
                             type="text"
                             sx={{ mt: 1, width: '37em' }}
                             variant="outlined"
@@ -116,6 +121,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>CPF</div>
                             <TextField
+                                name="cpf"
                                 placeholder="CPF"
                                 type="number"
                                 sx={{ mt: 1, width: '18em' }}
@@ -141,6 +147,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>Sexo</div>
                             <Select
+                                name="sexo"
                                 defaultValue=""
                                 sx={{ mt: 1, width: '18em' }}
                                 {...register('sexo',
@@ -159,6 +166,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>Data de Nascimento</div>
                             <TextField
+                                name="dataNasc"
                                 placeholder="Data de nascimento"
                                 type="date"
                                 sx={{ mt: 1, width: '18em' }}
@@ -176,6 +184,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>E-mail de usuario</div>
                             <TextField
+                                name="email"
                                 type="email"
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
@@ -195,6 +204,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>CEP</div>
                             <TextField
+                                name="cep"
                                 placeholder="CEP"
                                 type="number"
                                 sx={{ mt: 1, width: '16em' }}
@@ -214,12 +224,13 @@ function Login() {
                                 )
                                 }
                             />
-                            {errors.cep && <p className={style.pError}>{errors.cep.message}</p>}
+                            {/* {errors.cep && <p className={style.pError}>{errors.cep.message}</p>} */}
                         </div>
 
                         <div className={style.divTextField}>
                             <div>Numero da casa</div>
                             <TextField
+                                name="numCasa"
                                 placeholder="Numero da casa"
                                 type="number"
                                 sx={{ mt: 1, width: '11em' }}
@@ -245,6 +256,7 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>Complemento</div>
                             <TextField
+                                name="complemento"
                                 placeholder="Complemento"
                                 type="text"
                                 sx={{ mt: 1, width: '8em' }}
@@ -272,6 +284,7 @@ function Login() {
                     <div className={style.divTextField}>
                         <div>Senha</div>
                         <TextField
+                            name="senha"
                             type="password"
                             sx={{ mt: 1, width: '18em' }}
                             variant="outlined"

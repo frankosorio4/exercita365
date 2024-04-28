@@ -2,19 +2,22 @@ import { Outlet } from "react-router-dom"
 import Header from "./components/header";
 import { FetchContextProvider } from "./context/FetchContext";
 import { UsuarioContextProvider } from "./context/UsuariosContext";
+import { LocaisContextProvider } from "./context/LocaisContext";
 
 function App() {
 
   return (
-    <UsuarioContextProvider>
-      <FetchContextProvider>
+    <LocaisContextProvider>
+      <UsuarioContextProvider>
+        <FetchContextProvider>
 
-        <Header />
+          <Header />
 
-        <Outlet />
+          <Outlet />
 
-      </FetchContextProvider>
-    </UsuarioContextProvider>
+        </FetchContextProvider>
+      </UsuarioContextProvider>
+    </LocaisContextProvider>
   )
 }
 
