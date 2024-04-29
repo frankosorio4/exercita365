@@ -11,7 +11,7 @@
       "numCasa": "20",
       "complemento": "3b",
       "senha": "123456",
-      "online": "false"
+      "isLogged": "false"
     },
     {
       "id": "2",
@@ -24,7 +24,7 @@
       "numCasa": "765",
       "complemento": "1",
       "senha": "123456",
-      "online": "false"
+      "isLogged": "false"
     },
     {
       "id": "3",
@@ -37,7 +37,7 @@
       "numCasa": "159",
       "complemento": "1",
       "senha": "123456",
-      "online": "false"
+      "isLogged": "false"
     },
     {
       "id": "4",
@@ -50,7 +50,7 @@
       "numCasa": "123",
       "complemento": "5",
       "senha": "123456",
-      "online": "false"
+      "isLogged": "false"
     },
     {
       "id": "5",
@@ -63,7 +63,7 @@
       "numCasa": "15",
       "complemento": "2b",
       "senha": "123456",
-      "online": "false"
+      "isLogged": "false"
     }
   ],
   "listaLocais": [
@@ -74,27 +74,10 @@
       "email": "frank@email.com",
       "descricao": "88047470",
       "cep": "88047470",
-      "bairro": "",
-      "logradouro": "",
-      "estado": "",
-      "cidade": "",
-      "numCasa": "20",
-      "complemento": "3b",
-      "latitude": "123456",
-      "longitude": "false",
-      "localExcercises": "musculacao"
-    },
-    {
-      "id": "2",
-      "nome": "Natação costeira",
-      "cpf": "12345678910",
-      "email": "frank@email.com",
-      "descricao": "88047470",
-      "cep": "88047470",
-      "bairro": "",
-      "logradouro": "",
-      "estado": "",
-      "cidade": "",
+      "bairro": "Carianos",
+      "logradouro": "Servidão Hédio Adelino Narciso",
+      "estado": "SC",
+      "cidade": "Florianópolis",
       "numCasa": "20",
       "complemento": "3b",
       "latitude": "123456",
@@ -122,38 +105,6 @@
       "cidade": "Florianópolis"
     },
     {
-      "id": "22a5",
-      "nome": "andrea natacion",
-      "cpf": "12457812457",
-      "email": "frank_colmenares@estudante.sesisenai.org.br",
-      "descricao": "Se o valor for maior ou igual a 65, o código executará o bloco de código dentro do if e imprimirá a mensagem correspondente. Caso contrário, ele executará o bloco de código dentro do else e imprimirá a segunda mensagem no terminal.",
-      "cep": "88047471",
-      "numeroCasa": "253",
-      "complemento": "12",
-      "latitude": "12.7",
-      "longitude": "13",
-      "localExcercises": [
-        "musculacao",
-        "trilhas"
-      ]
-    },
-    {
-      "id": "a7d7",
-      "nome": "andrea natacion",
-      "cpf": "12457812457",
-      "email": "frank_colmenares@estudante.sesisenai.org.br",
-      "descricao": "Se o valor for maior ou igual a 65, o código executará o bloco de código dentro do if e imprimirá a mensagem correspondente. Caso contrário, ele executará o bloco de código dentro do else e imprimirá a segunda mensagem no terminal.",
-      "cep": "88047471",
-      "numeroCasa": "253",
-      "complemento": "12",
-      "latitude": "12.7",
-      "longitude": "13",
-      "localExcercises": [
-        "musculacao",
-        "trilhas"
-      ]
-    },
-    {
       "id": "ff52",
       "nome": "andrea natacion",
       "cpf": "12457812457",
@@ -167,73 +118,6 @@
       "localExcercises": [
         "musculacao",
         "trilhas"
-      ],
-      "bairro": "Carianos",
-      "logradouro": "Rua Valdemiro Júlio Gonçalves",
-      "estado": "SC",
-      "cidade": "Florianópolis"
-    },
-    {
-      "id": "0a72",
-      "nome": "frank",
-      "cpf": "12345678901",
-      "email": "frankosorio4@gmail.com",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
-      "cep": "88047471",
-      "numeroCasa": "535",
-      "complemento": "25",
-      "latitude": "12",
-      "longitude": "2",
-      "localExcercises": [
-        "trilhas"
-      ]
-    },
-    {
-      "id": "8cfb",
-      "nome": "nataçao",
-      "cpf": "12345678901",
-      "email": "frankosorio4@gmail.com",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
-      "cep": "88047471",
-      "numeroCasa": "535",
-      "complemento": "12b",
-      "latitude": "12",
-      "longitude": "11",
-      "localExcercises": [
-        "trilhas",
-        "pilates"
-      ]
-    },
-    {
-      "id": "c167",
-      "nome": "nataçao",
-      "cpf": "12345678901",
-      "email": "frankosorio4@gmail.com",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
-      "cep": "88047471",
-      "numeroCasa": "535",
-      "complemento": "12b",
-      "latitude": "12",
-      "longitude": "11",
-      "localExcercises": [
-        "trilhas",
-        "pilates"
-      ]
-    },
-    {
-      "id": "cf9d",
-      "nome": "frank",
-      "cpf": "12345678901",
-      "email": "frankosorio4@gmail.com",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
-      "cep": "88047470",
-      "numeroCasa": "535",
-      "complemento": "12",
-      "latitude": "15",
-      "longitude": "15",
-      "localExcercises": [
-        "trilhas",
-        "pilates"
       ],
       "bairro": "Carianos",
       "logradouro": "Rua Valdemiro Júlio Gonçalves",

@@ -29,11 +29,37 @@ export const LocaisContextProvider = ({children}) => {
             alert("Local cadastrado com sucesso.")
             readList()
         })
-        .catch(()=> alert("Erro ao cadastrar usuário!"))
+        .catch(()=> alert("Erro ao cadastrar local!"))
+    }
+
+    function editLocal(locais, id) {
+        fetch("http://localhost:3000/listaLocais/" + id ,{
+            method: "PUT",
+            body: JSON.stringify(locais),
+            header:{
+                'Context-Type': 'application/json',
+            },
+        })
+        .then(() =>{
+            alert("Local cadastrado com sucesso.")
+            readList()
+        })
+        .catch(()=> alert("Erro ao cadastrar local!"))
+    }
+
+    function deleteLocal(id) {
+        fetch("http://localhost:3000/listaLocais/" + id ,{
+            method: "DELETE"
+        })
+        .then(() =>{
+            alert("Local apagado com sucesso.")
+            readList()
+        })
+        .catch(()=> alert("Erro ao apagar local!"))
     }
 
     return(
-        <LocaisContext.Provider value={{locais, registerLocal}}>
+        <LocaisContext.Provider value={{locais, registerLocal, editLocal, deleteLocal}}>
             {children}
         </LocaisContext.Provider>
     )

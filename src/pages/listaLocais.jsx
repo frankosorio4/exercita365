@@ -1,19 +1,18 @@
 import styles from "./listaLocais.module.css"
 import { useContext } from "react";
 import { LocaisContext } from "../context/LocaisContext";
+import CardLocais from "../components/cardLocais";
 
 function ListaLocais(){
 
     const {locais} = useContext(LocaisContext);
 
     return(
-        <div>
-            <h1>Lista Locais Page</h1>
+        <div className={styles.container}>
+            <h1>Lista de Locais</h1>
             <div>
-                {locais.map(item => (
-                    <div key={item.id}>
-                        <h4>{item.nome}</h4>
-                    </div>
+                {locais.map((item, index) => (
+                    <CardLocais dadosLocal={item} key={index}/>
                 )
                 )}
             </div>
