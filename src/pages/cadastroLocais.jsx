@@ -6,32 +6,43 @@ import { useForm } from "react-hook-form"
 import styles from "./cadastroLocais.module.css"
 import { useContext, useState } from "react"
 import { FetchContext } from "../context/FetchContext"
+import { LocaisContext } from "../context/LocaisContext"
 
 function Cadastro() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { requestApi, data, validValue } = useContext(FetchContext);
+    const {registerLocal} = useContext(LocaisContext)
 
     function onSubmit(formValues) {
-        //requestApi('https://viacep.com.br/ws/88047470/json/');
-        //( validValue && setCepApi(data) )
-        console.log(formValues, validValue, data)
-        //TO DO SAVE DATA NO JSOM
+        if (!validValue){
+            alert("Cep Invalido")
+            return
+        }
+        else{
+            registerLocal(formValues);
+            console.log(formValues, validValue, data);
+        };
     };
 
     const searchCep = async () => {
         //debugger
         let cepInput = getValues('cep');
 
-        console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
-        await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
-        console.log(data);
-        setValue('bairro', data.bairro);
-        setValue('logradouro', data.logradouro);
-        setValue('estado', data.uf);
-        setValue('cidade', data.localidade);
-        console.log(data.erro);
+        if (cepInput.length == 8){
+            //console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
+            await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
+            console.log(data);
+            setValue('bairro', data.bairro);
+            setValue('logradouro', data.logradouro);
+            setValue('estado', data.uf);
+            setValue('cidade', data.localidade);
+            console.log(data.erro);
+            if (validValue == false || data.erro){
+                alert("Cep Invalido")
+            }
+        }
     };
 
     const options = [
@@ -199,7 +210,7 @@ function Cadastro() {
                             )
                             }
                         />
-                        {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
+                        {errors.numeroCasa && <p className={style.pError}>{errors.numeroCasa.message}</p>}
                     </div>
 
                     <div className={style.divTextField}>
@@ -225,12 +236,14 @@ function Cadastro() {
                             )
                             }
                         />
-                        {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
+                        {errors.complemento && <p className={style.pError}>{errors.complemento.message}</p>}
                     </div>
                 </div>
                 {/* !data.erro value that comes from API */}
-                {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
-                {!validValue && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>}
+                {/* {displayDiv1 && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
+                {displayDiv2 && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
+                {/* {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
+                {!validValue && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
 
                 <div className={style.divTextField2}>
                     <div className={style.divTextField}>

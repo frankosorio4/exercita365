@@ -6,7 +6,7 @@ export const FetchContext = createContext();
 export const FetchContextProvider = ( {children} ) => {
 
     const [data, setData] = useState([]);
-    const [validValue,setValidValue] = useState(false)
+    const [validValue,setValidValue] = useState('')
     
     function requestApi(url){
         fetch(url)
