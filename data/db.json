@@ -11,7 +11,7 @@
       "numeroCasa": "20",
       "complemento": "3b",
       "senha": "123456",
-      "isLogged": "false"
+      "isLogged": false
     },
     {
       "id": "2",
@@ -24,7 +24,7 @@
       "numeroCasa": "765",
       "complemento": "1",
       "senha": "123456",
-      "isLogged": "false"
+      "isLogged": false
     },
     {
       "id": "3",
@@ -37,7 +37,7 @@
       "numeroCasa": "159",
       "complemento": "1",
       "senha": "123456",
-      "isLogged": "false"
+      "isLogged": false
     },
     {
       "id": "4",
@@ -50,7 +50,7 @@
       "numeroCasa": "123",
       "complemento": "5",
       "senha": "123456",
-      "isLogged": "false"
+      "isLogged": false
     },
     {
       "id": "5",
@@ -63,7 +63,82 @@
       "numeroCasa": "15",
       "complemento": "2b",
       "senha": "123456",
+      "isLogged": false
+    },
+    {
+      "id": "d9cf",
+      "nome": "Kaori",
+      "cpf": "12245698745",
+      "sexo": "Feminino",
+      "dataNasc": "2024-04-26",
+      "email": "fra@gmail.com",
+      "cep": "88047470",
+      "numeroCasa": "45",
+      "complemento": "12",
+      "senha": "321654",
+      "bairro": "Carianos",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "estado": "SC",
+      "cidade": "Florianópolis"
+    },
+    {
+      "id": "80a5",
+      "nome": "Kaori",
+      "cpf": "12245698745",
+      "sexo": "Feminino",
+      "dataNasc": "2024-04-26",
+      "email": "fra@gmail.com",
+      "cep": "88047470",
+      "numeroCasa": "45",
+      "complemento": "12",
+      "senha": "321654",
+      "bairro": "Carianos",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "estado": "SC",
+      "cidade": "Florianópolis",
       "isLogged": "false"
+    },
+    {
+      "id": "c1ea",
+      "nome": "Kaori",
+      "cpf": "12245698745",
+      "sexo": "Feminino",
+      "dataNasc": "2024-04-26",
+      "email": "fra@gmail.com",
+      "cep": "88047470",
+      "numeroCasa": "45",
+      "complemento": "12",
+      "senha": "321654",
+      "bairro": "Carianos",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "estado": "SC",
+      "cidade": "Florianópolis",
+      "isLogged": "false"
+    },
+    {
+      "id": "4bf6",
+      "nome": "frank",
+      "cpf": "12345678955",
+      "sexo": "Nao Informado",
+      "dataNasc": "2024-04-04",
+      "email": "frankosorio4@gmail.com",
+      "cep": "88047475",
+      "numeroCasa": "23",
+      "complemento": "12",
+      "senha": "123456"
+    },
+    {
+      "id": "09c9",
+      "nome": "frank",
+      "cpf": "15963247855",
+      "sexo": "Feminino",
+      "dataNasc": "2024-05-01",
+      "email": "frankosorio4@gmail.com",
+      "cep": "88047471",
+      "numeroCasa": "12",
+      "complemento": "5",
+      "senha": "123654",
+      "isLogged": false
     }
   ],
   "listaLocais": [

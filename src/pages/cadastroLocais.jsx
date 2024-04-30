@@ -13,37 +13,37 @@ function Cadastro() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { requestApi, data } = useContext(FetchContext);
-    const {registerLocal} = useContext(LocaisContext)
+    const { registerLocal } = useContext(LocaisContext);
 
     function onSubmit(formValues) {
-        if (data.erro){
+        if (data.erro) {
             alert("Cep Invalido")
             return
         }
-        else{
+        else {
             registerLocal(formValues);
             console.log(formValues, data);
             navigate("/lista-locais",
-            window.scrollTo({ bottom: 0 })
+                window.scrollTo({ bottom: 0 })
             )
         };
     };
 
     const searchCep = async () => {
-        debugger
+        //debugger
         let cepInput = getValues('cep');
 
-        if (cepInput.length == 8){
+        if (cepInput.length == 8) {
             //console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
             await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
-            console.log("data",data);
+            console.log("data", data);
             setValue('bairro', data.bairro);
             setValue('logradouro', data.logradouro);
             setValue('estado', data.uf);
             setValue('cidade', data.localidade);
             console.log("data.erro", data.erro);
             // if (validValue == false || data.erro){
-            if (data.erro){
+            if (data.erro) {
                 alert("Cep Invalido")
             }
         }
@@ -57,286 +57,288 @@ function Cadastro() {
     ];
 
     return (
-        <div className={styles.divContainer}>
-            <h1>Cadastro do Local</h1>
+        <div className="container">
+            <div className={styles.divContainer}>
+                <h1>Cadastro do Local</h1>
 
-            <form className={style.divFormCadastro} onSubmit={handleSubmit(onSubmit)}>
-                <div className={style.divTextField}>
-                    <div>Nome do local</div>
-                    <TextField
-                        fullWidth
-                        name="nome"
-                        type="text"
-                        sx={{ mt: 1, width: '37em' }}
-                        variant="outlined"
-                        placeholder="Nome de usuario"
-                        {...register("nome",
-                            {
-                                required: "Campo Obrigatorio",
-                                minLength: {
-                                    value: 5,
-                                    message: "Mínimo 5 caracteres."
-                                },
-                                maxLength: {
-                                    value: 30,
-                                    message: "Máximo de 30 caracteres"
-                                }
-                            }
-                        )
-                        }
-                    />
-                    {errors.nome && <p className={style.pError}>{errors.nome.message}</p>}
-                </div>
-
-                <div className={style.divTextField2}>
+                <form className={style.divFormCadastro} onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.divTextField}>
-                        <div>CPF do usuario</div>
+                        <div>Nome do local</div>
                         <TextField
-                            name="cpf"                        
-                            placeholder="CPF"
-                            type="number"
-                            sx={{ mt: 1, width: '18em' }}
-                            variant="outlined"
-                            {...register("cpf",
-                                {
-                                    required: "Campo Obrigatorio",
-                                    minLength: {
-                                        value: 11,
-                                        message: "Mínimo 11 caracteres"
-                                    },
-                                    maxLength: {
-                                        value: 11,
-                                        message: "Máximo de 11 caracteres"
-                                    }
-                                }
-                            )
-                            }
-                        />
-                        {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
-                    </div>
-                    <div className={style.divTextField}>
-                        <div>E-mail de usuario</div>
-                        <TextField
-                            name="email"
-                            type="email"
-                            sx={{ mt: 1, width: '18em' }}
-                            variant="outlined"
-                            placeholder="usuario@email.com"
-                            {...register("email",
-                                {
-                                    required: "Campo Obrigatorio"
-                                }
-                            )
-                            }
-                        />
-                        {errors.email && <p className={style.pError}>{errors.email.message}</p>}
-                    </div>
-                </div>
-
-                <div className={style.divTextField}>
-                    <div>Descriçao do local</div>
-                    <TextField
-                        name="descricao"
-                        placeholder="Descriçao breve do local, no maximo 300 caracteres"
-                        type="text"
-                        multiline
-                        rows={2}
-                        sx={{ mt: 1, width: '37em' }}
-                        variant="outlined"
-                        {...register("descricao",
-                            {
-                                required: "Campo Obrigatorio",
-                                minLength: {
-                                    value: 50,
-                                    message: "Mínimo 50 caracteres"
-                                },
-                                maxLength: {
-                                    value: 300,
-                                    message: "Máximo de 300 caracteres"
-                                }
-                            }
-                        )
-                        }
-                    // textValue={errors.descricao?.message || "Descrição breve do local"}
-                    />
-                    {errors.descricao && <p className={style.pError}>{errors.descricao.message}</p>}
-                </div>
-
-                <div className={style.divTextField2}>
-                    <div className={style.divTextField}>
-                        <div>CEP</div>
-                        <TextField
-                            name="cep"
-                            placeholder="CEP"
-                            type="number"
-                            sx={{ mt: 1, width: '16em' }}
-                            variant="outlined"
-                            {...register("cep",
-                                {
-                                    required: "Campo Obrigatorio",
-                                    onBlur: () => searchCep(),
-                                    minLength: {
-                                        value: 8,
-                                        message: "Mínimo 8 caracteres"
-                                    },
-                                    maxLength: {
-                                        value: 8,
-                                        message: "Máximo de 8 caracteres"
-                                    }
-                                }
-                            )
-                            }
-                        />
-                        {errors.cep && <p className={style.pError}>{errors.cep.message}</p>}
-                    </div>
-
-                    <div className={style.divTextField}>
-                        <div>Numero do local</div>
-                        <TextField
-                            name="numeroCasa"
-                            placeholder="Numero da casa"
-                            type="number"
-                            sx={{ mt: 1, width: '11em' }}
-                            variant="outlined"
-                            {...register("numeroCasa",
-                                {
-                                    required: "Campo Obrigatorio",
-                                    minLength: {
-                                        value: 1,
-                                        message: "Mínimo 1 caracteres"
-                                    },
-                                    maxLength: {
-                                        value: 5,
-                                        message: "Máximo de 5 caracteres"
-                                    }
-                                }
-                            )
-                            }
-                        />
-                        {errors.numeroCasa && <p className={style.pError}>{errors.numeroCasa.message}</p>}
-                    </div>
-
-                    <div className={style.divTextField}>
-                        <div>Complemento</div>
-                        <TextField
-                            name="complemento"
-                            placeholder="Complemento"
+                            fullWidth
+                            name="nome"
                             type="text"
-                            sx={{ mt: 1, width: '8em' }}
+                            sx={{ mt: 1, width: '37em' }}
                             variant="outlined"
-                            {...register("complemento",
+                            placeholder="Nome de usuario"
+                            {...register("nome",
                                 {
                                     required: "Campo Obrigatorio",
                                     minLength: {
-                                        value: 1,
-                                        message: "Mínimo 1 caracteres"
+                                        value: 5,
+                                        message: "Mínimo 5 caracteres."
                                     },
                                     maxLength: {
-                                        value: 5,
-                                        message: "Máximo de 3 caracteres"
+                                        value: 30,
+                                        message: "Máximo de 30 caracteres"
                                     }
                                 }
                             )
                             }
                         />
-                        {errors.complemento && <p className={style.pError}>{errors.complemento.message}</p>}
+                        {errors.nome && <p className={style.pError}>{errors.nome.message}</p>}
                     </div>
-                </div>
-                {/* !data.erro value that comes from API */}
-                {/* {displayDiv1 && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
+
+                    <div className={style.divTextField2}>
+                        <div className={style.divTextField}>
+                            <div>CPF do usuario</div>
+                            <TextField
+                                name="cpf"
+                                placeholder="CPF"
+                                type="number"
+                                sx={{ mt: 1, width: '18em' }}
+                                variant="outlined"
+                                {...register("cpf",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 11,
+                                            message: "Mínimo 11 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 11,
+                                            message: "Máximo de 11 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.cpf && <p className={style.pError}>{errors.cpf.message}</p>}
+                        </div>
+                        <div className={style.divTextField}>
+                            <div>E-mail de usuario</div>
+                            <TextField
+                                name="email"
+                                type="email"
+                                sx={{ mt: 1, width: '18em' }}
+                                variant="outlined"
+                                placeholder="usuario@email.com"
+                                {...register("email",
+                                    {
+                                        required: "Campo Obrigatorio"
+                                    }
+                                )
+                                }
+                            />
+                            {errors.email && <p className={style.pError}>{errors.email.message}</p>}
+                        </div>
+                    </div>
+
+                    <div className={style.divTextField}>
+                        <div>Descriçao do local</div>
+                        <TextField
+                            name="descricao"
+                            placeholder="Descriçao breve do local, no maximo 300 caracteres"
+                            type="text"
+                            multiline
+                            rows={2}
+                            sx={{ mt: 1, width: '37em' }}
+                            variant="outlined"
+                            {...register("descricao",
+                                {
+                                    required: "Campo Obrigatorio",
+                                    minLength: {
+                                        value: 50,
+                                        message: "Mínimo 50 caracteres"
+                                    },
+                                    maxLength: {
+                                        value: 300,
+                                        message: "Máximo de 300 caracteres"
+                                    }
+                                }
+                            )
+                            }
+                        // textValue={errors.descricao?.message || "Descrição breve do local"}
+                        />
+                        {errors.descricao && <p className={style.pError}>{errors.descricao.message}</p>}
+                    </div>
+
+                    <div className={style.divTextField2}>
+                        <div className={style.divTextField}>
+                            <div>CEP</div>
+                            <TextField
+                                name="cep"
+                                placeholder="CEP"
+                                type="number"
+                                sx={{ mt: 1, width: '16em' }}
+                                variant="outlined"
+                                {...register("cep",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        onBlur: () => searchCep(),
+                                        minLength: {
+                                            value: 8,
+                                            message: "Mínimo 8 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 8,
+                                            message: "Máximo de 8 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.cep && <p className={style.pError}>{errors.cep.message}</p>}
+                        </div>
+
+                        <div className={style.divTextField}>
+                            <div>Numero do local</div>
+                            <TextField
+                                name="numeroCasa"
+                                placeholder="Numero da casa"
+                                type="number"
+                                sx={{ mt: 1, width: '11em' }}
+                                variant="outlined"
+                                {...register("numeroCasa",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 1,
+                                            message: "Mínimo 1 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 5,
+                                            message: "Máximo de 5 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.numeroCasa && <p className={style.pError}>{errors.numeroCasa.message}</p>}
+                        </div>
+
+                        <div className={style.divTextField}>
+                            <div>Complemento</div>
+                            <TextField
+                                name="complemento"
+                                placeholder="Complemento"
+                                type="text"
+                                sx={{ mt: 1, width: '8em' }}
+                                variant="outlined"
+                                {...register("complemento",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 1,
+                                            message: "Mínimo 1 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 5,
+                                            message: "Máximo de 3 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.complemento && <p className={style.pError}>{errors.complemento.message}</p>}
+                        </div>
+                    </div>
+                    {/* !data.erro value that comes from API */}
+                    {/* {displayDiv1 && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
                 {displayDiv2 && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
-                {/* {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
+                    {/* {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
                 {!validValue && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
 
-                <div className={style.divTextField2}>
-                    <div className={style.divTextField}>
-                        <div>Latitude</div>
-                        <TextField
-                            name="latitude"
-                            placeholder="Em graus decimais"
-                            type="number"
-                            sx={{ mt: 1, width: '18em' }}
-                            inputProps={{ step: 'any', min: -90, max: 90 }}
-                            //inputProps={{ step: 0.1 }}
-                            variant="outlined"
-                            // helperText="Digite un valor entre -180 and 180 (or 0 to 360)"
-                            {...register("latitude",
-                                {
-                                    required: "Campo Obrigatorio",
-                                    maxLength: {
-                                        value: 12,
-                                        message: "Máximo 12 caracteres"
+                    <div className={style.divTextField2}>
+                        <div className={style.divTextField}>
+                            <div>Latitude</div>
+                            <TextField
+                                name="latitude"
+                                placeholder="Em graus decimais"
+                                type="number"
+                                sx={{ mt: 1, width: '18em' }}
+                                inputProps={{ step: 'any', min: -90, max: 90 }}
+                                //inputProps={{ step: 0.1 }}
+                                variant="outlined"
+                                // helperText="Digite un valor entre -180 and 180 (or 0 to 360)"
+                                {...register("latitude",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        maxLength: {
+                                            value: 12,
+                                            message: "Máximo 12 caracteres"
+                                        }
                                     }
+                                )
                                 }
-                            )
-                            }
-                        />
-                        {errors.latitude && <p className={style.pError}>{errors.latitude.message}</p>}
-                    </div>
-                    <div className={style.divTextField}>
-                        <div>Longitude</div>
-                        <TextField
-                            name="longitude"
-                            placeholder="Em graus decimais"
-                            type="number"
-                            inputProps={{ step: 'any', min: -180, max: 180 }}
-                            //inputProps={{ step: 0.1 }}
-                            sx={{ mt: 1, width: '18em' }}
-                            variant="outlined"
-                            {...register("longitude",
-                                {
-                                    required: "Campo Obrigatorio",
-                                    maxLength: {
-                                        value: 13,
-                                        message: "Máximo 13 caracteres"
-                                    }
-                                }
-                            )
-                            }
-                        />
-                        {errors.longitude && <p className={style.pError}>{errors.longitude.message}</p>}
-                    </div>
-                </div>
-
-                <div>
-                    <FormLabel component="legend">Praticas esportivas:</FormLabel>
-                    {/* <FormGroup className={style.formGroupOptions}> */}
-                    <FormGroup row>
-                        {options.map((option) => (
-                            <FormControlLabel
-                                name="localExcercises"
-                                key={option.value}
-                                control={
-                                    <Checkbox
-                                        {...register('localExcercises', { required: true })}
-                                        value={option.value}
-                                    />
-                                }
-                                label={option.label}
                             />
-                        ))}
-                    </FormGroup>
-                    {errors.localExcercises && <p style={{ color: 'red' }}>Escolha pelo menos uma opção.</p>}
-                </div>
+                            {errors.latitude && <p className={style.pError}>{errors.latitude.message}</p>}
+                        </div>
+                        <div className={style.divTextField}>
+                            <div>Longitude</div>
+                            <TextField
+                                name="longitude"
+                                placeholder="Em graus decimais"
+                                type="number"
+                                inputProps={{ step: 'any', min: -180, max: 180 }}
+                                //inputProps={{ step: 0.1 }}
+                                sx={{ mt: 1, width: '18em' }}
+                                variant="outlined"
+                                {...register("longitude",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        maxLength: {
+                                            value: 13,
+                                            message: "Máximo 13 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.longitude && <p className={style.pError}>{errors.longitude.message}</p>}
+                        </div>
+                    </div>
 
-                <div className={style.divBtn}>
-                    <Button
-                        type='submit'
-                        variant="contained"
-                        sx={{ fontWeight: 'bold' }}
-                    >Cadastrar
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        sx={{ fontWeight: 'bold' }}
-                        onClick={() => navigate("/",
-                            window.scrollTo({ top: 0 })
-                        )
-                        }
-                    >Voltar
-                    </Button>
-                </div>
-            </form>
+                    <div>
+                        <FormLabel component="legend">Praticas esportivas:</FormLabel>
+                        {/* <FormGroup className={style.formGroupOptions}> */}
+                        <FormGroup row>
+                            {options.map((option) => (
+                                <FormControlLabel
+                                    name="localExcercises"
+                                    key={option.value}
+                                    control={
+                                        <Checkbox
+                                            {...register('localExcercises', { required: true })}
+                                            value={option.value}
+                                        />
+                                    }
+                                    label={option.label}
+                                />
+                            ))}
+                        </FormGroup>
+                        {errors.localExcercises && <p style={{ color: 'red' }}>Escolha pelo menos uma opção.</p>}
+                    </div>
+
+                    <div className={style.divBtn}>
+                        <Button
+                            type='submit'
+                            variant="contained"
+                            sx={{ fontWeight: 'bold' }}
+                        >Cadastrar
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            sx={{ fontWeight: 'bold' }}
+                            onClick={() => navigate("/",
+                                window.scrollTo({ top: 0 })
+                            )
+                            }
+                        >Voltar
+                        </Button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

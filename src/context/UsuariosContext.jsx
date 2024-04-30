@@ -17,8 +17,23 @@ export const UsuarioContextProvider = ( {children} ) => {
         .catch(error => console.log(error))
     };
 
+    function registerUser(dataUser) {
+        fetch("http://localhost:3000/listaUsuarios",{
+            method: "POST",
+            body: JSON.stringify(dataUser),
+            header:{
+                'Context-Type': 'application/json',
+            },
+        })
+        .then(() =>{
+            alert("Usuario cadastrado com sucesso.");
+            readUser();
+        })
+        .catch(()=> alert("Erro ao cadastrar Usuario!"))
+    }
+
     return(
-        <UsuarioContext.Provider value={{usuarios}}>
+        <UsuarioContext.Provider value={{usuarios,registerUser}}>
             {children}
         </UsuarioContext.Provider>
     )

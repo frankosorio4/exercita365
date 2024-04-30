@@ -7,20 +7,24 @@ function Dashboard(){
     const {usuarios} = useContext(UsuarioContext);
 
     return(
-        <div>
-            <h1>Dashboard Page</h1>
+        <div className="container">
+            <div>
+                <h1>Dashboard Page</h1>
 
-            <div>
-                <h2>Usuarios Logados</h2>
-            </div>
-            <div>
-                <h2>Lista Usuarios</h2>
-                {usuarios.map(usuario => (
-                    <div key={usuario.id}>
-                        <h4>{usuario.nome}</h4>
-                    </div>
-                )
-                )}
+                <div>
+                    <h2>Visão geral dos locais(Intro)</h2>
+                    <h2>Card Usuarios Logados-ativos-locais cadastrados</h2>
+                    <h2>Lista de locais sem botoes</h2>
+                </div>
+                <div>
+                    <h2>Lista Usuarios:</h2>
+                    {usuarios.map(usuario => (
+                        <div key={usuario.id}>
+                            <h4>{usuario.nome}</h4>
+                        </div>
+                    )
+                    )}
+                </div>
             </div>
         </div>
     )
