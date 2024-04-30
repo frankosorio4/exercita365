@@ -8,7 +8,7 @@
       "dataNasc": "1997-12-05",
       "email": "frank@email.com",
       "cep": "88047470",
-      "numCasa": "20",
+      "numeroCasa": "20",
       "complemento": "3b",
       "senha": "123456",
       "isLogged": "false"
@@ -21,7 +21,7 @@
       "dataNasc": "1985-01-03",
       "email": "donie@email.com",
       "cep": "88025318",
-      "numCasa": "765",
+      "numeroCasa": "765",
       "complemento": "1",
       "senha": "123456",
       "isLogged": "false"
@@ -34,7 +34,7 @@
       "dataNasc": "1992-12-07",
       "email": "luis@email.com",
       "cep": "88067001",
-      "numCasa": "159",
+      "numeroCasa": "159",
       "complemento": "1",
       "senha": "123456",
       "isLogged": "false"
@@ -47,7 +47,7 @@
       "dataNasc": "1990-06-10",
       "email": "ana@email.com",
       "cep": "88053526",
-      "numCasa": "123",
+      "numeroCasa": "123",
       "complemento": "5",
       "senha": "123456",
       "isLogged": "false"
@@ -60,7 +60,7 @@
       "dataNasc": "2005-10-01",
       "email": "sara@email.com",
       "cep": "88037625",
-      "numCasa": "15",
+      "numeroCasa": "15",
       "complemento": "2b",
       "senha": "123456",
       "isLogged": "false"
@@ -78,14 +78,14 @@
       "logradouro": "Servidão Hédio Adelino Narciso",
       "estado": "SC",
       "cidade": "Florianópolis",
-      "numCasa": "20",
+      "numeroCasa": "20",
       "complemento": "3b",
       "latitude": "123456",
       "longitude": "false",
       "localExcercises": "musculacao"
     },
     {
-      "id": "eca5",
+      "id": "2",
       "nome": "frank",
       "cpf": "12345678901",
       "email": "frankosorio4@gmail.com",
@@ -105,7 +105,7 @@
       "cidade": "Florianópolis"
     },
     {
-      "id": "ff52",
+      "id": "3",
       "nome": "andrea natacion",
       "cpf": "12457812457",
       "email": "frank_colmenares@estudante.sesisenai.org.br",
@@ -121,6 +121,26 @@
       ],
       "bairro": "Carianos",
       "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "estado": "SC",
+      "cidade": "Florianópolis"
+    },
+    {
+      "id": "4",
+      "nome": "Nataçao Carianos",
+      "cpf": "12345678901",
+      "email": "frankosorio4@gmail.com",
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
+      "cep": "88047475",
+      "numeroCasa": "535",
+      "complemento": "12",
+      "latitude": "15",
+      "longitude": "15",
+      "localExcercises": [
+        "trilhas",
+        "pilates"
+      ],
+      "bairro": "Carianos",
+      "logradouro": "Servidão Hédio Adelino Narciso",
       "estado": "SC",
       "cidade": "Florianópolis"
     }

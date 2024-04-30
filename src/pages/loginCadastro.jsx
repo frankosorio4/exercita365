@@ -230,12 +230,12 @@ function Login() {
                         <div className={style.divTextField}>
                             <div>Numero da casa</div>
                             <TextField
-                                name="numCasa"
+                                name="numeroCasa"
                                 placeholder="Numero da casa"
                                 type="number"
                                 sx={{ mt: 1, width: '11em' }}
                                 variant="outlined"
-                                {...register("numCasa",
+                                {...register("numeroCasa",
                                     {
                                         required: "Campo Obrigatorio",
                                         minLength: {
@@ -250,7 +250,7 @@ function Login() {
                                 )
                                 }
                             />
-                            {errors.numCasa && <p className={style.pError}>{errors.numCasa.message}</p>}
+                            {errors.numeroCasa && <p className={style.pError}>{errors.numeroCasa.message}</p>}
                         </div>
 
                         <div className={style.divTextField}>

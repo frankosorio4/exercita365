@@ -6,25 +6,25 @@ export const FetchContext = createContext();
 export const FetchContextProvider = ( {children} ) => {
 
     const [data, setData] = useState([]);
-    const [validValue,setValidValue] = useState('')
+    // const [validValue,setValidValue] = useState('')
     
     function requestApi(url){
         fetch(url)
         .then((res) => res.json())
         .then((res) => {
             setData(res)
-            setValidValue(true)
+            // setValidValue(true)
         })
         .catch(error =>{
             //window.alert("Request Error");
             console.error(error);
-            setValidValue(false);
+            // setValidValue(false);
         })
     }
 
     return(
-        // <FetchContext.Provider value={{data, requestApi}}>
-        <FetchContext.Provider value={{data,requestApi,validValue}}>
+        // <FetchContext.Provider value={{data, requestApi,validValue}}>
+        <FetchContext.Provider value={{data,requestApi}}>
             {children}
         </FetchContext.Provider>
     )

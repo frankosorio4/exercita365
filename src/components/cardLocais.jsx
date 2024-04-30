@@ -28,18 +28,14 @@ function CardLocais({ dadosLocal }) {
                     {/* <span>
                         {dadosLocal.cidade} / {dadosLocal.estado}
                     </span> */}
-                    <span>Endereço: {dadosLocal.logradouro} {dadosLocal.numCasa}, {dadosLocal.bairro}. {dadosLocal.cidade}, {dadosLocal.estado} </span>
-                    {/* <span>Trajeto: {dadosLocal.trajeto} Km</span>
-                    <span>Duraçao: {dadosLocal.duracao} min</span> */}
+                    <span>Endereço: {dadosLocal.logradouro} {dadosLocal.numeroCasa}, {dadosLocal.bairro}. {dadosLocal.cidade}, {dadosLocal.estado} </span>
                 </div>
                 <div>
                     <Button
                         variant="outlined"
                         sx={{ fontWeight: 'bold', width: '7em', marginRight: '15px'}}
                         onClick={() => goEditar(dadosLocal.id)
-                            // navigate("/",
-                            // window.scrollTo({ top: 0 })
-
+                            // GO TO FORM
                         }
                     >Editar
                     </Button>
@@ -47,9 +43,6 @@ function CardLocais({ dadosLocal }) {
                         variant="outlined"
                         sx={{ fontWeight: 'bold', width: '7em' }}
                         onClick={() => goDelete(dadosLocal.id)
-                            // navigate("/",
-                            // window.scrollTo({ top: 0 })
-
                         }
                     >Apagar
                     </Button>

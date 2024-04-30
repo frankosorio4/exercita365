@@ -1,5 +1,5 @@
 import style from "./loginCadastro.module.css"
-import { TextField, Button, Select, MenuItem } from "@mui/material"
+import { TextField, Button } from "@mui/material"
 import { FormControlLabel, Checkbox, FormGroup, FormLabel } from "@mui/material"
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
@@ -12,34 +12,38 @@ function Cadastro() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
-    const { requestApi, data, validValue } = useContext(FetchContext);
+    const { requestApi, data } = useContext(FetchContext);
     const {registerLocal} = useContext(LocaisContext)
 
     function onSubmit(formValues) {
-        if (!validValue){
+        if (data.erro){
             alert("Cep Invalido")
             return
         }
         else{
             registerLocal(formValues);
-            console.log(formValues, validValue, data);
+            console.log(formValues, data);
+            navigate("/lista-locais",
+            window.scrollTo({ bottom: 0 })
+            )
         };
     };
 
     const searchCep = async () => {
-        //debugger
+        debugger
         let cepInput = getValues('cep');
 
         if (cepInput.length == 8){
             //console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
             await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
-            console.log(data);
+            console.log("data",data);
             setValue('bairro', data.bairro);
             setValue('logradouro', data.logradouro);
             setValue('estado', data.uf);
             setValue('cidade', data.localidade);
-            console.log(data.erro);
-            if (validValue == false || data.erro){
+            console.log("data.erro", data.erro);
+            // if (validValue == false || data.erro){
+            if (data.erro){
                 alert("Cep Invalido")
             }
         }
@@ -167,7 +171,6 @@ function Cadastro() {
                             type="number"
                             sx={{ mt: 1, width: '16em' }}
                             variant="outlined"
-                            // onChange={handleChange}
                             {...register("cep",
                                 {
                                     required: "Campo Obrigatorio",
