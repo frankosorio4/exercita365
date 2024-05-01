@@ -10,14 +10,43 @@ function Login() {
 
     const navigate = useNavigate();
     const [showLoginForm, setShowLoginForm] = useState(true);
-    const { registerUser } = useContext(UsuarioContext);
+    const { usuarios, registerUser } = useContext(UsuarioContext);
     const { requestApi, data } = useContext(FetchContext);
 
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm();
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm()
 
-    function onSubmit1(dataFormLogin) {
-        console.log(dataFormLogin);
+    function onSubmit1(dataLogin) {
+        try{
+            let listaUsuarios = usuarios;
+
+            let usuarioExiste = false;
+            let usuarioValidado = false;
+            let usuarioId = "";
+
+            listaUsuarios.map(usuario => {
+                if(usuario.email == dataLogin.email){
+                    usuarioExiste = true;
+                    usuarioId = usuario.id;
+                    console.log("id",usuarioId);
+                    if(usuario.senha == dataLogin.senha){
+                        usuarioValidado = true;
+                    }
+                }
+            });
+            if(usuarioValidado){
+                console.log("usuario autorizado")
+            }
+            else if(usuarioExiste){
+                console.log("usuario ou senha incorretas")
+            }
+            else{
+                console.log("usuario NO existe")
+            }
+        }
+        catch{
+        }
+
     };
 
     function onSubmit2(dataFormCadastro) {
@@ -100,6 +129,7 @@ function Login() {
                                 type='submit'
                                 variant="contained"
                                 sx={{ fontWeight: 'bold' }}
+                                // onClick={() => validateUser()}                                )
                             >Entrar
                             </Button>
                             <Button
