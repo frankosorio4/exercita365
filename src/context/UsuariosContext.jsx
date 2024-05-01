@@ -32,6 +32,11 @@ export const UsuarioContextProvider = ( {children} ) => {
         .catch(()=> alert("Erro ao cadastrar Usuario!"))
     }
 
+    function validateUser(){
+        a=1
+        //to do
+    }
+
     return(
         <UsuarioContext.Provider value={{usuarios,registerUser}}>
             {children}

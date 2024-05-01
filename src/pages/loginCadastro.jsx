@@ -26,22 +26,24 @@ function Login() {
         // setShowLoginForm(true)//activate
     };
 
-    const searchCep = async () => {
+    async function searchCep() {
         //debugger
         let cepInput = getValues('cep');
 
         if (cepInput.length == 8){
             await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
             console.log("data",data);
-            setValue('bairro', data.bairro);
-            setValue('logradouro', data.logradouro);
-            setValue('estado', data.uf);
-            setValue('cidade', data.localidade);
-            setValue("isLogged", false);
-            console.log("data.erro", data.erro);
-            if (data.erro){
-                alert("Cep Invalido")
+            if (data){
+                setValue('bairro', data.bairro);
+                setValue('logradouro', data.logradouro);
+                setValue('estado', data.uf);
+                setValue('cidade', data.localidade);
+                setValue("isLogged", false);
+                console.log("data.erro", data.erro);
             }
+            // if (data.erro){
+            //     alert("Cep Invalido")
+            // }
         }
     };
 

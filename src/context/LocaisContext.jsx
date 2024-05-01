@@ -17,6 +17,22 @@ export const LocaisContextProvider = ({children}) => {
         .catch(error => console.log(error))
     };
 
+    async function readLocalId(id){
+        try{
+            const data = await fetch("http://localhost:3000/listaLocais/"+id)
+            setLocais(data.json())
+        }
+        catch{
+            alert("Error ao editar Local")
+        }
+    };
+    // function readLocalId(id){
+    //     fetch("http://localhost:3000/listaLocais/" + id)
+    //     .then(response => response.json())
+    //     .then(data => setLocais(data))
+    //     .catch(error => console.log(error))
+    // };
+
     function registerLocal(dataLocal) {
         fetch("http://localhost:3000/listaLocais",{
             method: "POST",
@@ -32,19 +48,19 @@ export const LocaisContextProvider = ({children}) => {
         .catch(()=> alert("Erro ao cadastrar local!"))
     }
 
-    function editLocal(locais, id) {
+    function editLocal(modifiedDataLocal, id) {
         fetch("http://localhost:3000/listaLocais/" + id ,{
             method: "PUT",
-            body: JSON.stringify(locais),
+            body: JSON.stringify(modifiedDataLocal),
             header:{
                 'Context-Type': 'application/json',
             },
         })
         .then(() =>{
-            alert("Local cadastrado com sucesso.")
+            alert("Local atualizado com sucesso.")
             readList()
         })
-        .catch(()=> alert("Erro ao cadastrar local!"))
+        .catch(()=> alert("Erro ao atualizar o local!"))
     }
 
     function deleteLocal(id) {
@@ -59,7 +75,7 @@ export const LocaisContextProvider = ({children}) => {
     }
 
     return(
-        <LocaisContext.Provider value={{locais, registerLocal, editLocal, deleteLocal}}>
+        <LocaisContext.Provider value={{locais, registerLocal, editLocal, deleteLocal, readLocalId}}>
             {children}
         </LocaisContext.Provider>
     )

@@ -79,7 +79,8 @@
       "bairro": "Carianos",
       "logradouro": "Rua Valdemiro Júlio Gonçalves",
       "estado": "SC",
-      "cidade": "Florianópolis"
+      "cidade": "Florianópolis",
+      "isLogged": false
     },
     {
       "id": "80a5",
@@ -125,7 +126,8 @@
       "cep": "88047475",
       "numeroCasa": "23",
       "complemento": "12",
-      "senha": "123456"
+      "senha": "123456",
+      "isLogged": false
     },
     {
       "id": "09c9",

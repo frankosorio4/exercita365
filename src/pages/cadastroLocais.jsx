@@ -13,7 +13,7 @@ function Cadastro() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { requestApi, data } = useContext(FetchContext);
-    const { registerLocal } = useContext(LocaisContext);
+    const { registerLocal, editLocal, readLocalId} = useContext(LocaisContext);
 
     function onSubmit(formValues) {
         if (data.erro) {
@@ -41,6 +41,7 @@ function Cadastro() {
             setValue('logradouro', data.logradouro);
             setValue('estado', data.uf);
             setValue('cidade', data.localidade);
+            setValue("isLogged", false);
             console.log("data.erro", data.erro);
             // if (validValue == false || data.erro){
             if (data.erro) {
@@ -56,6 +57,29 @@ function Cadastro() {
         { label: 'Nataçao', value: 'natacao' }
     ];
 
+    async function readActualLocal(id) {
+        debugger
+        let dataLocalActual = await readLocalId(id);
+        setLocalActual(dataLocalActual);
+    }
+    
+    const [localActual, setLocalActual] =useState({        
+        nome: "",
+        cpf: "",
+        email: "",
+        descricao: "",
+        cep: "",
+        bairro: "",
+        logradouro: "",
+        estado: "",
+        cidade: "",
+        numeroCasa: "",
+        complemento: "",
+        latitude: "",
+        longitude: "13",
+        localExcercises: ""
+    })
+
     return (
         <div className="container">
             <div className={styles.divContainer}>
@@ -68,6 +92,7 @@ function Cadastro() {
                             fullWidth
                             name="nome"
                             type="text"
+                            defaultValue={localActual.nome}
                             sx={{ mt: 1, width: '37em' }}
                             variant="outlined"
                             placeholder="Nome de usuario"
@@ -96,6 +121,7 @@ function Cadastro() {
                                 name="cpf"
                                 placeholder="CPF"
                                 type="number"
+                                defaultValue={localActual.cpf}
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
                                 {...register("cpf",
@@ -120,6 +146,7 @@ function Cadastro() {
                             <TextField
                                 name="email"
                                 type="email"
+                                defaultValue={localActual.email}
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
                                 placeholder="usuario@email.com"
@@ -140,6 +167,7 @@ function Cadastro() {
                             name="descricao"
                             placeholder="Descriçao breve do local, no maximo 300 caracteres"
                             type="text"
+                            defaultValue={localActual.descricao}
                             multiline
                             rows={2}
                             sx={{ mt: 1, width: '37em' }}
@@ -170,6 +198,7 @@ function Cadastro() {
                                 name="cep"
                                 placeholder="CEP"
                                 type="number"
+                                defaultValue={localActual.cep}
                                 sx={{ mt: 1, width: '16em' }}
                                 variant="outlined"
                                 {...register("cep",
@@ -197,6 +226,7 @@ function Cadastro() {
                                 name="numeroCasa"
                                 placeholder="Numero da casa"
                                 type="number"
+                                defaultValue={localActual.numeroCasa}
                                 sx={{ mt: 1, width: '11em' }}
                                 variant="outlined"
                                 {...register("numeroCasa",
@@ -223,6 +253,7 @@ function Cadastro() {
                                 name="complemento"
                                 placeholder="Complemento"
                                 type="text"
+                                defaultValue={localActual.complemento}
                                 sx={{ mt: 1, width: '8em' }}
                                 variant="outlined"
                                 {...register("complemento",
@@ -256,6 +287,7 @@ function Cadastro() {
                                 name="latitude"
                                 placeholder="Em graus decimais"
                                 type="number"
+                                defaultValue={localActual.latitude}
                                 sx={{ mt: 1, width: '18em' }}
                                 inputProps={{ step: 'any', min: -90, max: 90 }}
                                 //inputProps={{ step: 0.1 }}
@@ -280,6 +312,7 @@ function Cadastro() {
                                 name="longitude"
                                 placeholder="Em graus decimais"
                                 type="number"
+                                defaultValue={localActual.longitude}
                                 inputProps={{ step: 'any', min: -180, max: 180 }}
                                 //inputProps={{ step: 0.1 }}
                                 sx={{ mt: 1, width: '18em' }}
@@ -335,6 +368,20 @@ function Cadastro() {
                             )
                             }
                         >Voltar
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            sx={{ fontWeight: 'bold' }}
+                            onClick={() => readActualLocal("2")
+                            }
+                        >Ler local
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            sx={{ fontWeight: 'bold' }}
+                            // onClick={() => editLocal("2")
+                            // }
+                        >Modificar Local
                         </Button>
                     </div>
                 </form>
