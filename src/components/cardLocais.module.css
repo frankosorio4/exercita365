@@ -1,20 +1,13 @@
 .card_container{
-    display: flex;
-    width: 80%;
     box-shadow: .2em .2em .8em  black;
-    height: auto;
-    /* height: 16em; */
-    margin: 15px auto;
     border-radius: 10px;
-}
-
-.div1DadosLocal{
     display: flex;
     flex-direction: column;
-    padding: 15px;
-    margin-top: 10px;
-    margin-left: 10px;
-    gap: 10px;
+    width: 80%;
+    height: auto;
+    margin: 30px auto;
+    padding: 25px;
+    gap: 15px;
 }
 
 .div2DadosLocal{
@@ -22,4 +15,9 @@
     flex-direction: column;
     margin-left: 15px;
     gap: 15px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
 }

@@ -7,7 +7,7 @@ export const LocaisContextProvider = ({children}) => {
     const [locais, setLocais] = useState([]);
 
     useEffect( () =>
-        readList()
+        readList()//update locais
     ,[]);
 
     function readList(){
@@ -43,7 +43,7 @@ export const LocaisContextProvider = ({children}) => {
         })
         .then(() =>{
             alert("Local cadastrado com sucesso.")
-            readList()
+            readList()//update locais
         })
         .catch(()=> alert("Erro ao cadastrar local!"))
     }
@@ -58,7 +58,7 @@ export const LocaisContextProvider = ({children}) => {
         })
         .then(() =>{
             alert("Local atualizado com sucesso.")
-            readList()
+            readList()//update locais
         })
         .catch(()=> alert("Erro ao atualizar o local!"))
     }
@@ -69,7 +69,7 @@ export const LocaisContextProvider = ({children}) => {
         })
         .then(() =>{
             alert("Local apagado com sucesso.")
-            readList()
+            readList()//update locais
         })
         .catch(()=> alert("Erro ao apagar local!"))
     }

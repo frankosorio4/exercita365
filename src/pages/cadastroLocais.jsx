@@ -15,13 +15,13 @@ function Cadastro() {
     const { requestApi, data } = useContext(FetchContext);
     const { registerLocal, editLocal, readLocalId} = useContext(LocaisContext);
 
-    function onSubmit(formValues) {
+    async function onSubmit(formValues) {
         if (data.erro) {
             alert("Cep Invalido")
             return
         }
         else {
-            registerLocal(formValues);
+            await registerLocal(formValues);
             console.log(formValues, data);
             navigate("/lista-locais",
                 window.scrollTo({ bottom: 0 })

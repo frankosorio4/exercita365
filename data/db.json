@@ -50,7 +50,7 @@
       "numeroCasa": "123",
       "complemento": "5",
       "senha": "123456",
-      "isLogged": false
+      "isLogged": true
     },
     {
       "id": "5",
@@ -63,7 +63,7 @@
       "numeroCasa": "15",
       "complemento": "2b",
       "senha": "123456",
-      "isLogged": false
+      "isLogged": true
     },
     {
       "id": "d9cf",
@@ -127,7 +127,7 @@
       "numeroCasa": "23",
       "complemento": "12",
       "senha": "123456",
-      "isLogged": false
+      "isLogged": true
     },
     {
       "id": "09c9",
@@ -149,7 +149,6 @@
       "nome": "Frank Academia",
       "cpf": "12345678910",
       "email": "frank@email.com",
-      "descricao": "88047470",
       "cep": "88047470",
       "bairro": "Carianos",
       "logradouro": "Servidão Hédio Adelino Narciso",
@@ -220,6 +219,27 @@
       "logradouro": "Servidão Hédio Adelino Narciso",
       "estado": "SC",
       "cidade": "Florianópolis"
+    },
+    {
+      "id": "05f3",
+      "nome": "Gym Kaori",
+      "cpf": "15975325855",
+      "email": "fra@gmail.com",
+      "descricao": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ducimus labore nostrum minima fugiat ut quia incidunt quae eius, veritatis dignissimos! Placeat, quos? Sunt quos sed nam cum, minima quisquam.",
+      "cep": "88047490",
+      "numeroCasa": "159",
+      "complemento": "5",
+      "latitude": "25",
+      "longitude": "13",
+      "localExcercises": [
+        "trilhas",
+        "pilates"
+      ],
+      "bairro": "Carianos",
+      "logradouro": "Rua Ilde Schwambach Starosky",
+      "estado": "SC",
+      "cidade": "Florianópolis",
+      "isLogged": false
     }
   ]
 }

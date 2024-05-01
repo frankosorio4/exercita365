@@ -8,13 +8,15 @@ function ListaLocais(){
     const {locais} = useContext(LocaisContext);
 
     return(
-        <div className={styles.container}>
-            <h1>Lista de Locais</h1>
-            <div>
-                {locais.map((item, index) => (
-                    <CardLocais dadosLocal={item} key={index}/>
-                )
-                )}
+        <div className="container">
+            <div className={styles.container}>
+                <h1>Lista de Locais</h1>
+                <div>
+                    {locais.map((item, index) => (
+                        <CardLocais dadosLocal={item} key={index}/>
+                    )
+                    )}
+                </div>
             </div>
         </div>
     )

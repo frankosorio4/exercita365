@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    gap: 20px;
+}
+
+.titulo{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cardOverview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    box-shadow: .2em .2em .8em  black;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.cardLocais{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70vw;
+    box-shadow: .2em .2em .8em  black;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    gap: 15px;
+}
+
+.tituloCard{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.locais{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

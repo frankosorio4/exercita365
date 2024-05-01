@@ -1,20 +1,28 @@
 .headerContainer{
+    width: 100%;
+    position: fixed;
+    z-index: 50;
+    background-color: lightgray;
+}
+
+/* .headerContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 3em;
-}
+} */
 
 .navHeader{
     display:flex;
     justify-content: center;
     align-items: center;
+    height: 2.5em;
     gap: 30px;
 }
 
 a {
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     /* color: white; */
 }
