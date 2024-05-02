@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import styles from "./cadastroLocais.module.css"
 import { useContext, useState } from "react"
-import { FetchContext } from "../context/FetchContext"
 import { LocaisContext } from "../context/LocaisContext"
 
 function Cadastro() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
-    const { requestApi, data } = useContext(FetchContext);
-    const { registerLocal, editLocal, readLocalId} = useContext(LocaisContext);
+    const { registerLocal, editLocal, readLocalId } = useContext(LocaisContext);
+    // const { requestApi, data } = useContext(FetchContext);
+    const [data, setData] = useState()
 
     async function onSubmit(formValues) {
         if (data.erro) {
@@ -29,23 +29,43 @@ function Cadastro() {
         };
     };
 
-    const searchCep = async () => {
+    function requestApi(url) {
+        fetch(url)
+            .then((res) => res.json())
+            .then((res) => {
+                setData(res)
+                // console.log("data iside fetch",data)
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    // async function requestApi(url) {
+    //     try {
+    //         let response = await fetch(url)
+    //         setData(response.json())
+    //     }
+    //     catch {
+    //     }
+    // }
+
+    const onblurSearchCep = async () => {
         //debugger
         let cepInput = getValues('cep');
 
         if (cepInput.length == 8) {
-            //console.log(`https://viacep.com.br/ws/${cepInput}/json/`);
             await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
             console.log("data", data);
-            setValue('bairro', data.bairro);
-            setValue('logradouro', data.logradouro);
-            setValue('estado', data.uf);
-            setValue('cidade', data.localidade);
-            setValue("isLogged", false);
-            console.log("data.erro", data.erro);
-            // if (validValue == false || data.erro){
-            if (data.erro) {
+            if (data) {
+                setValue('bairro', data.bairro);
+                setValue('logradouro', data.logradouro);
+                setValue('estado', data.uf);
+                setValue('cidade', data.localidade);
+                setValue("isLogged", false);
+            } else {
                 alert("Cep Invalido")
+                console.log("Cep Invalido")
             }
         }
     };
@@ -62,13 +82,13 @@ function Cadastro() {
         let dataLocalActual = await readLocalId(id);
         setLocalActual(dataLocalActual);
     }
-    
-    const [localActual, setLocalActual] =useState({        
+
+    const [localActual, setLocalActual] = useState({
         nome: "",
         cpf: "",
         email: "",
         descricao: "",
-        cep: "",
+        cep: "88047470",
         bairro: "",
         logradouro: "",
         estado: "",
@@ -76,7 +96,7 @@ function Cadastro() {
         numeroCasa: "",
         complemento: "",
         latitude: "",
-        longitude: "13",
+        longitude: "",
         localExcercises: ""
     })
 
@@ -204,7 +224,7 @@ function Cadastro() {
                                 {...register("cep",
                                     {
                                         required: "Campo Obrigatorio",
-                                        onBlur: () => searchCep(),
+                                        onBlur: () => onblurSearchCep(),
                                         minLength: {
                                             value: 8,
                                             message: "Mínimo 8 caracteres"
@@ -379,8 +399,8 @@ function Cadastro() {
                         <Button
                             variant="outlined"
                             sx={{ fontWeight: 'bold' }}
-                            // onClick={() => editLocal("2")
-                            // }
+                        // onClick={() => editLocal("2")
+                        // }
                         >Modificar Local
                         </Button>
                     </div>
