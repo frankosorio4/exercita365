@@ -13,59 +13,42 @@ function Cadastro() {
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { registerLocal, editLocal, readLocalId } = useContext(LocaisContext);
     // const { requestApi, data } = useContext(FetchContext);
-    const [data, setData] = useState()
+    // const [data, setData] = useState()
 
     async function onSubmit(formValues) {
-        if (data.erro) {
-            alert("Cep Invalido")
-            return
-        }
-        else {
-            await registerLocal(formValues);
-            console.log(formValues, data);
-            navigate("/lista-locais",
-                window.scrollTo({ bottom: 0 })
-            )
-        };
-    };
-
-    function requestApi(url) {
-        fetch(url)
-            .then((res) => res.json())
-            .then((res) => {
-                setData(res)
-                // console.log("data iside fetch",data)
-            })
-            .catch(error => {
-                console.error(error);
-            })
+        //TO DO if not valid cep
+        await registerLocal(formValues);
+        // console.log(formValues);
+        navigate("/lista-locais",
+            window.scrollTo({ bottom: 0 }))
     }
 
-    // async function requestApi(url) {
-    //     try {
-    //         let response = await fetch(url)
-    //         setData(response.json())
-    //     }
-    //     catch {
-    //     }
-    // }
+    function editarLocal(id){
+        let dataModificada = getValues();//all the values
+        // console.log(dataModificada)
+        editLocal(dataModificada,id)
+        // navigate("/lista-locais")//ACTIVATE
+    }
 
     const onblurSearchCep = async () => {
-        //debugger
+        // debugger
         let cepInput = getValues('cep');
 
         if (cepInput.length == 8) {
-            await requestApi(`https://viacep.com.br/ws/${cepInput}/json/`);
-            console.log("data", data);
-            if (data) {
-                setValue('bairro', data.bairro);
-                setValue('logradouro', data.logradouro);
-                setValue('estado', data.uf);
-                setValue('cidade', data.localidade);
-                setValue("isLogged", false);
-            } else {
-                alert("Cep Invalido")
-                console.log("Cep Invalido")
+            const response = await fetch(`https://viacep.com.br/ws/${cepInput}/json/`);
+            if (response) {
+                const resp = await response.json();//NEEDS AWAIT
+                // console.log(resp)
+                setValue('bairro', resp.bairro);
+                setValue('logradouro', resp.logradouro);
+                setValue('estado', resp.uf);
+                setValue('cidade', resp.localidade);
+                // setValue("isLogged", false);
+                // console.log(resp.erro)
+                if (resp.erro) {
+                    alert("Cep Invalido")
+                    // console.log("Cep Invalido")
+                }
             }
         }
     };
@@ -77,13 +60,12 @@ function Cadastro() {
         { label: 'Nataçao', value: 'natacao' }
     ];
 
-
-    const [localActual, setLocalActual] = useState({
+    const [localActual, setLocalActual] = useState({//it is needed?
         nome: "",
         cpf: "",
         email: "",
         descricao: "",
-        cep: "88047470",
+        cep: "",
         bairro: "",
         logradouro: "",
         estado: "",
@@ -95,23 +77,24 @@ function Cadastro() {
         localExcercises: ""
     })
 
-    async function readActualLocal(id) {
-        debugger
-        let dataLocalActual = await readLocalId2(id);
-        // setLocalActual(dataLocalActual);
+    async function readLocalDataId(id) {
+        // debugger
+        const dataLocalActual = await readLocalId(id);
+        setValue('nome', dataLocalActual.nome);
+        setValue('cpf', dataLocalActual.cpf);
+        setValue('cep', dataLocalActual.cep);
+        setValue('email', dataLocalActual.email);
+        setValue('descricao', dataLocalActual.descricao);
+        setValue('bairro', dataLocalActual.cep);
+        setValue('logradouro', dataLocalActual.logradouro);
+        setValue('estado', dataLocalActual.estado);
+        setValue('cidade', dataLocalActual.cidade);
+        setValue('numeroCasa', dataLocalActual.numeroCasa);
+        setValue('complemento', dataLocalActual.complemento);
+        setValue('latitude', dataLocalActual.latitude);
+        setValue('longitude', dataLocalActual.longitude);
+        // setValue('localExcercises', dataLocalActual.localExcercises);
     }
-
-    async function readLocalId2(id){
-        try{
-            const response = await fetch("http://localhost:3000/listaLocais/"+id)
-            setLocalActual(response.json())
-            console.log(data)
-        }
-        catch{
-            alert("Error ao editar Local")
-        }
-    };
-
 
     return (
         <div className="container">
@@ -209,7 +192,7 @@ function Cadastro() {
                                 {
                                     required: "Campo Obrigatorio",
                                     minLength: {
-                                        value: 50,
+                                        value: 5,
                                         message: "Mínimo 50 caracteres"
                                     },
                                     maxLength: {
@@ -308,10 +291,120 @@ function Cadastro() {
                         </div>
                     </div>
                     {/* !data.erro value that comes from API */}
-                    {/* {displayDiv1 && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
-                {displayDiv2 && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
-                    {/* {validValue && <p style={{ color: 'blue' }}>Endereço: {data.logradouro}. {data.bairro}, {data.localidade}. {data.uf}</p>}
-                {!validValue && <p style={{ color: 'red' }}><b>CEP não valido!</b></p>} */}
+
+                    <div>
+                        <div className={style.divTextField}>
+                            <div>Rua</div>
+                            <TextField
+                                fullWidth
+                                name="logradouro"
+                                type="text"
+                                defaultValue={localActual.logradouro}
+                                sx={{ mt: 1, width: '37em' }}
+                                variant="outlined"
+                                placeholder="Rua"
+                                {...register("logradouro",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 5,
+                                            message: "Mínimo 5 caracteres."
+                                        },
+                                        maxLength: {
+                                            value: 50,
+                                            message: "Máximo de 40 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.logradouro && <p className={style.pError}>{errors.logradouro.message}</p>}
+                        </div>
+                    </div>
+
+                    <div className={style.divTextField2}>
+                        <div className={style.divTextField}>
+                            <div>Bairro</div>
+                            <TextField
+                                name="bairro"
+                                placeholder="Bairro"
+                                type="text"
+                                defaultValue={localActual.bairro}
+                                sx={{ mt: 1, width: '16em' }}
+                                variant="outlined"
+                                {...register("bairro",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        onBlur: () => onblurSearchCep(),
+                                        minLength: {
+                                            value: 8,
+                                            message: "Mínimo 5 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 15,
+                                            message: "Máximo de 15 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.bairro && <p className={style.pError}>{errors.bairro.message}</p>}
+                        </div>
+
+                        <div className={style.divTextField}>
+                            <div>Cidade</div>
+                            <TextField
+                                name="cidade"
+                                placeholder="Cidade"
+                                type="text"
+                                defaultValue={localActual.cidade}
+                                sx={{ mt: 1, width: '14em' }}
+                                variant="outlined"
+                                {...register("cidade",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 1,
+                                            message: "Mínimo 3 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 15,
+                                            message: "Máximo de 15 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.cidade && <p className={style.pError}>{errors.cidade.message}</p>}
+                        </div>
+
+                        <div className={style.divTextField}>
+                            <div>Estado</div>
+                            <TextField
+                                name="estado"
+                                placeholder="Estado"
+                                type="text"
+                                defaultValue={localActual.estado}
+                                sx={{ mt: 1, width: '5em' }}
+                                variant="outlined"
+                                {...register("estado",
+                                    {
+                                        required: "Campo Obrigatorio",
+                                        minLength: {
+                                            value: 1,
+                                            message: "Mínimo 2 caracteres"
+                                        },
+                                        maxLength: {
+                                            value: 5,
+                                            message: "Máximo de 3 caracteres"
+                                        }
+                                    }
+                                )
+                                }
+                            />
+                            {errors.estado && <p className={style.pError}>{errors.estado.message}</p>}
+                        </div>
+                    </div>
 
                     <div className={style.divTextField2}>
                         <div className={style.divTextField}>
@@ -405,16 +498,15 @@ function Cadastro() {
                         <Button
                             variant="outlined"
                             sx={{ fontWeight: 'bold' }}
-                            onClick={() => readActualLocal("2")
+                            onClick={() => readLocalDataId("2")
                             }
                         >Ler local
                         </Button>
                         <Button
                             variant="outlined"
                             sx={{ fontWeight: 'bold' }}
-                        // onClick={() => editLocal("2")
-                        // }
-                        >Modificar Local
+                        onClick={() => editarLocal("2")}
+                        >Editar Local
                         </Button>
                     </div>
                 </form>

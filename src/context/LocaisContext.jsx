@@ -17,21 +17,16 @@ export const LocaisContextProvider = ({children}) => {
         .catch(error => console.log(error))
     };
 
-    async function readLocalId(id){
-        try{
-            const data = await fetch("http://localhost:3000/listaLocais/"+id)
-            setLocais(data.json())
+    async function readLocalId(id) {
+        try {
+            const response = await fetch("http://localhost:3000/listaLocais/" + id)
+            const resp = await response.json()
+            return resp
         }
-        catch{
-            alert("Error ao editar Local")
+        catch {
+            alert("Error ao ler dados do Local")
         }
     };
-    // function readLocalId(id){
-    //     fetch("http://localhost:3000/listaLocais/" + id)
-    //     .then(response => response.json())
-    //     .then(data => setLocais(data))
-    //     .catch(error => console.log(error))
-    // };
 
     function registerLocal(dataLocal) {
         fetch("http://localhost:3000/listaLocais",{
