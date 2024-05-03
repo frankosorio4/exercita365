@@ -77,11 +77,6 @@ function Cadastro() {
         { label: 'Nataçao', value: 'natacao' }
     ];
 
-    async function readActualLocal(id) {
-        debugger
-        let dataLocalActual = await readLocalId(id);
-        setLocalActual(dataLocalActual);
-    }
 
     const [localActual, setLocalActual] = useState({
         nome: "",
@@ -99,6 +94,24 @@ function Cadastro() {
         longitude: "",
         localExcercises: ""
     })
+
+    async function readActualLocal(id) {
+        debugger
+        let dataLocalActual = await readLocalId2(id);
+        // setLocalActual(dataLocalActual);
+    }
+
+    async function readLocalId2(id){
+        try{
+            const response = await fetch("http://localhost:3000/listaLocais/"+id)
+            setLocalActual(response.json())
+            console.log(data)
+        }
+        catch{
+            alert("Error ao editar Local")
+        }
+    };
+
 
     return (
         <div className="container">

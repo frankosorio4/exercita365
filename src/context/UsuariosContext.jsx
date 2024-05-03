@@ -32,13 +32,22 @@ export const UsuarioContextProvider = ( {children} ) => {
         .catch(()=> alert("Erro ao cadastrar Usuario!"))
     }
 
-    function validateUser(){
-        a=1
-        //to do
+    function editUser(modifiedDataUser, id) {
+        fetch("http://localhost:3000/listaUsuarios/" + id ,{
+            method: "PUT",
+            body: JSON.stringify(modifiedDataUser),
+            header:{
+                'Context-Type': 'application/json',
+            },
+        })
+        .then(() =>{
+            readList()//update locais
+        })
+        .catch(()=> alert("Erro ao atualizar o usuario!"))
     }
 
     return(
-        <UsuarioContext.Provider value={{usuarios, registerUser}}>
+        <UsuarioContext.Provider value={{usuarios, registerUser, editUser}}>
             {children}
         </UsuarioContext.Provider>
     )

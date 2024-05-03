@@ -10,19 +10,40 @@ function Login() {
 
     const navigate = useNavigate();
     const [showLoginForm, setShowLoginForm] = useState(true);
-    const { usuarios, registerUser } = useContext(UsuarioContext);
+
+    const { usuarios, registerUser} = useContext(UsuarioContext);
     const { requestApi, data } = useContext(FetchContext);
 
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm();
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm()
 
-    function onSubmit1(dataLogin) {
+    async function editUser(usuarioEditado, id) {
         try{
-            let listaUsuarios = usuarios;
+            console.log("entro no fetch")
+            await fetch("http://localhost:3000/listaUsuarios/" + id ,{
+                method: "PUT",
+                body: JSON.stringify(usuarioEditado),
+                header:{
+                    'Context-Type': 'application/json',
+                },
+            })
+            console.log("salio do fetch")
+        }
+        catch{
+            error => console.log(error)
+            console.log("Erro ao atualizar o usuario!")
+        }
+    }
 
+    async function onSubmit1(dataLogin) {
+        try{
+            // debugger
+            let listaUsuarios = usuarios;
+            //variables to validate
             let usuarioExiste = false;
             let usuarioValidado = false;
             let usuarioId = "";
+            let usuarioEditado = [];
 
             listaUsuarios.map(usuario => {
                 if(usuario.email == dataLogin.email){
@@ -31,11 +52,17 @@ function Login() {
                     console.log("id",usuarioId);
                     if(usuario.senha == dataLogin.senha){
                         usuarioValidado = true;
+                        usuarioEditado = usuario;
+                        usuarioEditado.isLogged = true;
+                        console.log("usuarioEditado",usuarioEditado);
+                        editUser(usuarioEditado, usuarioId)
+                        // registerUser(usuarioEditado)
+                        // navigate("/", window.scrollTo( { top: 0 } ) )
                     }
                 }
             });
             if(usuarioValidado){
-                console.log("usuario autorizado")
+                console.log("usuario autorizado, DEPOIS DE SAIR do fetch")
             }
             else if(usuarioExiste){
                 console.log("usuario ou senha incorretas")

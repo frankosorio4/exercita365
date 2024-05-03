@@ -11,7 +11,7 @@
       "numeroCasa": "20",
       "complemento": "3b",
       "senha": "123456",
-      "isLogged": false
+      "isLogged": true
     },
     {
       "id": "2",
@@ -66,7 +66,7 @@
       "isLogged": true
     },
     {
-      "id": "d9cf",
+      "id": "6",
       "nome": "Kaori",
       "cpf": "12245698745",
       "sexo": "Feminino",
@@ -83,7 +83,7 @@
       "isLogged": false
     },
     {
-      "id": "80a5",
+      "id": "7",
       "nome": "Kaori",
       "cpf": "12245698745",
       "sexo": "Feminino",
@@ -100,7 +100,7 @@
       "isLogged": "false"
     },
     {
-      "id": "c1ea",
+      "id": "8",
       "nome": "Kaori",
       "cpf": "12245698745",
       "sexo": "Feminino",
@@ -117,7 +117,7 @@
       "isLogged": "false"
     },
     {
-      "id": "4bf6",
+      "id": "9",
       "nome": "frank",
       "cpf": "12345678955",
       "sexo": "Nao Informado",
@@ -130,7 +130,7 @@
       "isLogged": true
     },
     {
-      "id": "09c9",
+      "id": "10",
       "nome": "frank",
       "cpf": "15963247855",
       "sexo": "Feminino",
@@ -140,6 +140,23 @@
       "numeroCasa": "12",
       "complemento": "5",
       "senha": "123654",
+      "isLogged": false
+    },
+    {
+      "id": "3770",
+      "nome": "frank",
+      "cpf": "12345698788",
+      "sexo": "Maculino",
+      "dataNasc": "2024-05-15",
+      "email": "frank2@email.com",
+      "cep": "88047470",
+      "numeroCasa": "13",
+      "complemento": "15",
+      "senha": "123456",
+      "bairro": "Carianos",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "estado": "SC",
+      "cidade": "Florianópolis",
       "isLogged": false
     }
   ],
@@ -221,7 +238,7 @@
       "cidade": "Florianópolis"
     },
     {
-      "id": "05f3",
+      "id": "5",
       "nome": "Gym Kaori",
       "cpf": "15975325855",
       "email": "fra@gmail.com",
