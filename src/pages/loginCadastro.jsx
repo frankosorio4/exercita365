@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { useContext, useState } from "react"
 import { UsuarioContext } from "../context/UsuariosContext"
-import { FetchContext } from "../context/FetchContext"
+// import { FetchContext } from "../context/FetchContext"
 
 function Login() {
 
@@ -12,7 +12,7 @@ function Login() {
     const [showLoginForm, setShowLoginForm] = useState(true);
 
     const { usuarios, registerUser } = useContext(UsuarioContext);
-    const { requestApi, data } = useContext(FetchContext);
+    // const { requestApi, data } = useContext(FetchContext);
 
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm();
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm()
@@ -41,7 +41,6 @@ function Login() {
             let listaUsuarios = usuarios;
             //variables to validate
             let usuarioExiste = false;
-            let usuarioValidado = false;
             let usuarioId = "";
             let usuarioEditado = [];
 
@@ -56,15 +55,16 @@ function Login() {
                         usuarioEditado.isLogged = true;
                         console.log("usuarioEditado", usuarioEditado);
                         editUser(usuarioEditado, usuarioId)
-                        // registerUser(usuarioEditado)
-                        // navigate("/", window.scrollTo( { top: 0 } ) )
+                        localStorage.setItem("isLogged",true)
+                        window.location.href = "/"
+                        return
                     }
                 }
             });
-            if (usuarioValidado) {
-                console.log("usuario autorizado, DEPOIS DE SAIR do fetch")
-            }
-            else if (usuarioExiste) {
+            // if (usuarioValidado) {
+            //     console.log("usuario autorizado, DEPOIS DE SAIR do fetch")
+            // }
+            if (usuarioExiste) {
                 console.log("usuario ou senha incorretas")
             }
             else {
@@ -76,10 +76,29 @@ function Login() {
 
     };
 
-    function onSubmit2(dataFormCadastro) {
-        registerUser(dataFormCadastro);
-        console.log(dataFormCadastro);
-        // setShowLoginForm(true)//activate
+    function onSubmit2(dataCadastro) {
+        // debugger
+        let listaUsuarios = usuarios;
+        let emailValido = true;
+        let cpfValido = true;
+
+        listaUsuarios.find(usuario => {
+            if (usuario.email == dataCadastro.email) {
+                emailValido = false;
+                alert("Email ja cadastrado! Tente com outro Email")
+                return true// to stop the loop
+            }
+            if (usuario.cpf == dataCadastro.cpf) {
+                cpfValido = false;
+                alert("CPF ja cadastrado! Tente com outro CPF")
+                return true// to stop the loop
+            }
+        });
+
+        if (emailValido && cpfValido){
+            // registerUser(dataCadastro);
+            console.log(dataCadastro);
+        }
     };
 
     const onblurSearchCep = async () => {
@@ -99,7 +118,6 @@ function Login() {
                 // console.log(resp.erro)
                 if (resp.erro) {
                     alert("Cep Invalido")
-                    // console.log("Cep Invalido")
                 }
             }
         }
@@ -413,12 +431,12 @@ function Login() {
                                             required: "Campo Obrigatorio",
                                             onBlur: () => onblurSearchCep(),
                                             minLength: {
-                                                value: 8,
+                                                value: 5,
                                                 message: "Mínimo 5 caracteres"
                                             },
                                             maxLength: {
-                                                value: 15,
-                                                message: "Máximo de 15 caracteres"
+                                                value: 25,
+                                                message: "Máximo de 25 caracteres"
                                             }
                                         }
                                     )

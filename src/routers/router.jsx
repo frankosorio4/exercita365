@@ -5,9 +5,14 @@ import Cadastro from "../pages/cadastroLocais.jsx"
 import ListaLocais from "../pages/listaLocais.jsx"
 import Login from "../pages/loginCadastro.jsx"
 import NotFound from "../pages/NotFound.jsx"
+import EditarLocal from "../pages/editarLocal.jsx"
 
 const routes = createBrowserRouter(
     [
+        {
+            path: "/login",
+            element:<Login/>
+        },
         {
             path: "/",
             element: <App/>,
@@ -18,18 +23,21 @@ const routes = createBrowserRouter(
                     element:<Dashboard/>
                 },
                 {
-                    path: "/cadastro-local",
-                    element:<Cadastro/>
-                },
-                {
                     path: "/lista-locais",
                     element:<ListaLocais/>
                 },
                 {
-                    path: "/login",
-                    element:<Login/>
+                    path: "/cadastro-local",
+                    element:<Cadastro/>
                 },
-
+                {
+                    path: "/editar-local/:id",
+                    element:<EditarLocal/>
+                },
+                // {
+                //     path: "/login",
+                //     element:<Login/>
+                // }
             ]
         }
     ]

@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom"
 import Header from "./components/header";
 import { FetchContextProvider } from "./context/FetchContext";
-import { UsuarioContextProvider } from "./context/UsuariosContext";
+// import { UsuarioContextProvider } from "./context/UsuariosContext";
 import { LocaisContextProvider } from "./context/LocaisContext";
 
 function App() {
 
   return (
     <LocaisContextProvider>
-      <UsuarioContextProvider>
+      {/* <UsuarioContextProvider> */}
         <FetchContextProvider>
 
           <Header />
@@ -16,7 +16,7 @@ function App() {
           <Outlet />
 
         </FetchContextProvider>
-      </UsuarioContextProvider>
+      {/* </UsuarioContextProvider> */}
     </LocaisContextProvider>
   )
 }

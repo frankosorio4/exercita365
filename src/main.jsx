@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import routes from './routers/router'
+import { UsuarioContextProvider } from "./context/UsuariosContext";
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={routes}>
-  </RouterProvider>
+  <UsuarioContextProvider>
+    <RouterProvider router={routes}>
+    </RouterProvider>
+  </UsuarioContextProvider>
 )

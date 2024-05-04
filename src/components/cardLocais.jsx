@@ -1,21 +1,25 @@
+import React from "react";
 import { useContext } from "react"
 import styles from "./cardLocais.module.css"
 import { Button } from "@mui/material"
 import { LocaisContext } from "../context/LocaisContext"
+import { useNavigate } from 'react-router-dom'
 
 function CardLocais({ dadosLocal }) {
 
-    const { deleteLocal } = useContext(LocaisContext)
+    const { deleteLocal } = useContext(LocaisContext);
+    const navigate = useNavigate();
 
-    function goEditar(id) {
-        console.log("editando: " + id)
+    function goEditar(userId2Edit) {
+        console.log("editando: " + userId2Edit);
+        navigate(`/editar-local/${userId2Edit}`);
     }
 
     function goDelete(id) {
         let apagar = confirm(`Deseja apagar o local "${dadosLocal.nome}"?`);
         if (apagar) {
             deleteLocal(id);
-        }
+        };
     }
 
     return (
@@ -35,7 +39,6 @@ function CardLocais({ dadosLocal }) {
                         color="success"
                         sx={{ fontWeight: 'bold', width: '7em', marginRight: '15px' }}
                         onClick={() => goEditar(dadosLocal.id)
-                            // GO TO FORM
                         }
                     >Editar
                     </Button>

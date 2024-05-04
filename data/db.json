@@ -6,7 +6,7 @@
       "cpf": "12345678910",
       "sexo": "Masculino",
       "dataNasc": "1997-12-05",
-      "email": "frank@email.com",
+      "email": "franky@email.com",
       "cep": "88047470",
       "numeroCasa": "20",
       "complemento": "3b",
@@ -122,7 +122,7 @@
       "cpf": "12345678955",
       "sexo": "Nao Informado",
       "dataNasc": "2024-04-04",
-      "email": "frankosorio4@gmail.com",
+      "email": "frankosorio@gmail.com",
       "cep": "88047475",
       "numeroCasa": "23",
       "complemento": "12",
@@ -158,27 +158,45 @@
       "estado": "SC",
       "cidade": "Florianópolis",
       "isLogged": false
+    },
+    {
+      "id": "6f20",
+      "nome": "kaokao",
+      "cpf": "12345678901",
+      "sexo": "Maculino",
+      "dataNasc": "2024-05-22",
+      "email": "kaorisa@email.com",
+      "cep": "88047470",
+      "numeroCasa": "5",
+      "complemento": "12",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "bairro": "Carianos",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "senha": "3112233",
+      "isLogged": false
+    },
+    {
+      "id": "a9d9",
+      "nome": "kaokao",
+      "cpf": "12345678911",
+      "sexo": "Maculino",
+      "dataNasc": "2024-05-22",
+      "email": "kaorisa@email.com",
+      "cep": "88047470",
+      "numeroCasa": "5",
+      "complemento": "12",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "bairro": "Carianos",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "senha": "3112233",
+      "isLogged": false
     }
   ],
   "listaLocais": [
     {
-      "id": "1",
-      "nome": "Frank Academia",
-      "cpf": "12345678910",
-      "email": "frank@email.com",
-      "cep": "88047470",
-      "bairro": "Carianos",
-      "logradouro": "Servidão Hédio Adelino Narciso",
-      "estado": "SC",
-      "cidade": "Florianópolis",
-      "numeroCasa": "20",
-      "complemento": "3b",
-      "latitude": "123456",
-      "longitude": "false",
-      "localExcercises": "musculacao"
-    },
-    {
-      "nome": "frank",
+      "nome": "frank sevices",
       "cpf": "12345678901",
       "email": "frankosorio4@gmail.com",
       "descricao": "Se o valor for maior ou igual a 65...",
@@ -192,8 +210,8 @@
       "latitude": "12.3",
       "longitude": "55.4",
       "localExcercises": [
-        "trilhas",
-        "natacao"
+        "musculacao",
+        "pilates"
       ],
       "id": "2"
     },
@@ -275,6 +293,26 @@
       "localExcercises": [
         "musculacao",
         "natacao"
+      ]
+    },
+    {
+      "id": "cf0b",
+      "nome": "frank sevices",
+      "cpf": "12345678901",
+      "email": "frankosorio4@gmail.com",
+      "descricao": "Se o valor for maior ou igual a 65...",
+      "cep": "88047480",
+      "numeroCasa": "535",
+      "complemento": "12",
+      "logradouro": "Servidão Hédio Adelino Narciso",
+      "bairro": "88047480",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "latitude": "12.3",
+      "longitude": "55.4",
+      "localExcercises": [
+        "musculacao",
+        "pilates"
       ]
     }
   ]

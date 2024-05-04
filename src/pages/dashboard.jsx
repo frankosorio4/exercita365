@@ -20,7 +20,7 @@ function Dashboard() {
         const loggedUserArray = Object.values(usuarios).filter(
             (user) => user['isLogged'] === true
         );
-        console.log(loggedUserArray);
+        // console.log(loggedUserArray);
         setUsersLogged(loggedUserArray.length);
     }, [usuarios]);
 
@@ -43,9 +43,9 @@ function Dashboard() {
                                 <h2 className={styles.tituloCard}>
                                     <b>Overview</b>
                                 </h2> 
-                                <span>
+                                {/* <span>
                                     Numero de Usuarios: {usersRegistered}.
-                                </span>
+                                </span> */}
                                 <span>
                                     Usuarios Logados: {usersLogged}.
                                 </span>

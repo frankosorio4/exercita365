@@ -1,24 +1,29 @@
-import styles from "./cadastroLocais.module.css"
+import styles from "./editarLocal.module.css"
 import { TextField, Button } from "@mui/material"
 import { FormControlLabel, Checkbox, FormGroup, FormLabel } from "@mui/material"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LocaisContext } from "../context/LocaisContext"
 
-function Cadastro() {
+function EditarLocal() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
-    const { registerLocal } = useContext(LocaisContext);
+    const { editLocal, readLocalId } = useContext(LocaisContext);
     // const { requestApi, data } = useContext(FetchContext);
+    const { id } = useParams();
+
+    useEffect( () =>{
+        console.log("entro editando: ", id);
+        readLocalDataId(id);
+    },[id])
 
     async function onSubmit(formValues) {
         //TO DO if not valid cep
-        await registerLocal(formValues);
-        // console.log(formValues);
-        navigate("/lista-locais",
-            window.scrollTo({ bottom: 0 }))
+        // let dataModificada = getValues();//all the values at any time
+        editLocal(formValues,id)// from LocaisContext
+        navigate("/lista-locais")
     }
 
     const onblurSearchCep = async () => {
@@ -34,8 +39,11 @@ function Cadastro() {
                 setValue('logradouro', resp.logradouro);
                 setValue('estado', resp.uf);
                 setValue('cidade', resp.localidade);
+                // setValue("isLogged", false);
+                // console.log(resp.erro)
                 if (resp.erro) {
                     alert("Cep Invalido")
+                    // console.log("Cep Invalido")
                 }
             }
         }
@@ -48,46 +56,46 @@ function Cadastro() {
         { label: 'Nataçao', value: 'natacao' }
     ];
 
-    // const [localActual, setLocalActual] = useState({//we can delete  and deleted defaul value in inputs and button
-    //     nome: "",
-    //     cpf: "",
-    //     email: "",
-    //     descricao: "",
-    //     cep: "",
-    //     bairro: "",
-    //     logradouro: "",
-    //     estado: "",
-    //     cidade: "",
-    //     numeroCasa: "",
-    //     complemento: "",
-    //     latitude: "",
-    //     longitude: "",
-    //     localExcercises: ""
-    // })
+    const [localActual, setLocalActual] = useState({//it is needed?
+        nome: "",
+        cpf: "",
+        email: "",
+        descricao: "",
+        cep: "",
+        bairro: "",
+        logradouro: "",
+        estado: "",
+        cidade: "",
+        numeroCasa: "",
+        complemento: "",
+        latitude: "",
+        longitude: "",
+        localExcercises: ""
+    })
 
-    // async function readLocalDataId(id) {//we can delete  and deleted defaul value in inputs and button
-    //     // debugger
-    //     const dataLocalActual = await readLocalId(id);
-    //     setValue('nome', dataLocalActual.nome);
-    //     setValue('cpf', dataLocalActual.cpf);
-    //     setValue('cep', dataLocalActual.cep);
-    //     setValue('email', dataLocalActual.email);
-    //     setValue('descricao', dataLocalActual.descricao);
-    //     setValue('bairro', dataLocalActual.cep);
-    //     setValue('logradouro', dataLocalActual.logradouro);
-    //     setValue('estado', dataLocalActual.estado);
-    //     setValue('cidade', dataLocalActual.cidade);
-    //     setValue('numeroCasa', dataLocalActual.numeroCasa);
-    //     setValue('complemento', dataLocalActual.complemento);
-    //     setValue('latitude', dataLocalActual.latitude);
-    //     setValue('longitude', dataLocalActual.longitude);
-    //     // setValue('localExcercises', dataLocalActual.localExcercises);
-    // }
+    async function readLocalDataId(id) {
+        // debugger
+        const dataLocalActual = await readLocalId(id);
+        setValue('nome', dataLocalActual.nome);
+        setValue('cpf', dataLocalActual.cpf);
+        setValue('cep', dataLocalActual.cep);
+        setValue('email', dataLocalActual.email);
+        setValue('descricao', dataLocalActual.descricao);
+        setValue('bairro', dataLocalActual.cep);
+        setValue('logradouro', dataLocalActual.logradouro);
+        setValue('estado', dataLocalActual.estado);
+        setValue('cidade', dataLocalActual.cidade);
+        setValue('numeroCasa', dataLocalActual.numeroCasa);
+        setValue('complemento', dataLocalActual.complemento);
+        setValue('latitude', dataLocalActual.latitude);
+        setValue('longitude', dataLocalActual.longitude);
+        // setValue('localExcercises', dataLocalActual.localExcercises);
+    }
 
     return (
         <div className="container">
             <div className={styles.divContainer}>
-                <h1>Cadastro do Local</h1>
+                <h1>Editar Local</h1>
 
                 <form className={styles.divFormCadastro} onSubmit={handleSubmit(onSubmit)}>
                     <div className={styles.divTextField}>
@@ -96,7 +104,7 @@ function Cadastro() {
                             fullWidth
                             name="nome"
                             type="text"
-                            //defaultValue={localActual.nome}
+                            defaultValue={localActual.nome}
                             sx={{ mt: 1, width: '37em' }}
                             variant="outlined"
                             placeholder="Nome de usuario"
@@ -125,7 +133,7 @@ function Cadastro() {
                                 name="cpf"
                                 placeholder="CPF"
                                 type="number"
-                                //defaultValue={localActual.cpf}
+                                defaultValue={localActual.cpf}
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
                                 {...register("cpf",
@@ -150,7 +158,7 @@ function Cadastro() {
                             <TextField
                                 name="email"
                                 type="email"
-                                //defaultValue={localActual.email}
+                                defaultValue={localActual.email}
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
                                 placeholder="usuario@email.com"
@@ -171,7 +179,7 @@ function Cadastro() {
                             name="descricao"
                             placeholder="Descriçao breve do local, no maximo 300 caracteres"
                             type="text"
-                            //defaultValue={localActual.descricao}
+                            defaultValue={localActual.descricao}
                             multiline
                             rows={2}
                             sx={{ mt: 1, width: '37em' }}
@@ -202,7 +210,7 @@ function Cadastro() {
                                 name="cep"
                                 placeholder="CEP"
                                 type="number"
-                                //defaultValue={localActual.cep}
+                                defaultValue={localActual.cep}
                                 sx={{ mt: 1, width: '16em' }}
                                 variant="outlined"
                                 {...register("cep",
@@ -230,7 +238,7 @@ function Cadastro() {
                                 name="numeroCasa"
                                 placeholder="Numero da casa"
                                 type="number"
-                                //defaultValue={localActual.numeroCasa}
+                                defaultValue={localActual.numeroCasa}
                                 sx={{ mt: 1, width: '11em' }}
                                 variant="outlined"
                                 {...register("numeroCasa",
@@ -257,7 +265,7 @@ function Cadastro() {
                                 name="complemento"
                                 placeholder="Complemento"
                                 type="text"
-                                //defaultValue={localActual.complemento}
+                                defaultValue={localActual.complemento}
                                 sx={{ mt: 1, width: '8em' }}
                                 variant="outlined"
                                 {...register("complemento",
@@ -287,7 +295,7 @@ function Cadastro() {
                                 fullWidth
                                 name="logradouro"
                                 type="text"
-                                //defaultValue={localActual.logradouro}
+                                defaultValue={localActual.logradouro}
                                 sx={{ mt: 1, width: '37em' }}
                                 variant="outlined"
                                 placeholder="Rua"
@@ -317,7 +325,7 @@ function Cadastro() {
                                 name="bairro"
                                 placeholder="Bairro"
                                 type="text"
-                                //defaultValue={localActual.bairro}
+                                defaultValue={localActual.bairro}
                                 sx={{ mt: 1, width: '16em' }}
                                 variant="outlined"
                                 {...register("bairro",
@@ -345,7 +353,7 @@ function Cadastro() {
                                 name="cidade"
                                 placeholder="Cidade"
                                 type="text"
-                                //defaultValue={localActual.cidade}
+                                defaultValue={localActual.cidade}
                                 sx={{ mt: 1, width: '14em' }}
                                 variant="outlined"
                                 {...register("cidade",
@@ -372,7 +380,7 @@ function Cadastro() {
                                 name="estado"
                                 placeholder="Estado"
                                 type="text"
-                                //defaultValue={localActual.estado}
+                                defaultValue={localActual.estado}
                                 sx={{ mt: 1, width: '5em' }}
                                 variant="outlined"
                                 {...register("estado",
@@ -401,7 +409,7 @@ function Cadastro() {
                                 name="latitude"
                                 placeholder="Em graus decimais"
                                 type="number"
-                                //defaultValue={localActual.latitude}
+                                defaultValue={localActual.latitude}
                                 sx={{ mt: 1, width: '18em' }}
                                 inputProps={{ step: 'any', min: -90, max: 90 }}
                                 //inputProps={{ step: 0.1 }}
@@ -426,7 +434,7 @@ function Cadastro() {
                                 name="longitude"
                                 placeholder="Em graus decimais"
                                 type="number"
-                                //defaultValue={localActual.longitude}
+                                defaultValue={localActual.longitude}
                                 inputProps={{ step: 'any', min: -180, max: 180 }}
                                 //inputProps={{ step: 0.1 }}
                                 sx={{ mt: 1, width: '18em' }}
@@ -468,16 +476,23 @@ function Cadastro() {
                     </div>
 
                     <div className={styles.divBtn}>
+                        {/* <Button
+                            type='submit'
+                            variant="contained"
+                            sx={{ fontWeight: 'bold',display: hidden ? 'none' : 'block' }}
+                        >Cadastrar
+                        </Button> */}
                         <Button
                             type='submit'
                             variant="contained"
                             sx={{ fontWeight: 'bold' }}
-                        >Cadastrar
+                        // onClick={() => editarLocalBtn("2")}
+                        >Editar Local
                         </Button>
                         <Button
                             variant="outlined"
                             sx={{ fontWeight: 'bold' }}
-                            onClick={() => navigate("/",
+                            onClick={() => navigate("/lista-locais",
                                 window.scrollTo({ top: 0 })
                             )
                             }
@@ -488,9 +503,8 @@ function Cadastro() {
                             sx={{ fontWeight: 'bold' }}
                             onClick={() => readLocalDataId("1")
                             }
-                        >Ler local Borrar
+                        >Ler local Manualmente Borrar
                         </Button> */}
-
                     </div>
                 </form>
             </div>
@@ -498,4 +512,4 @@ function Cadastro() {
     )
 }
 
-export default Cadastro;
+export default EditarLocal;
