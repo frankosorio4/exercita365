@@ -5,6 +5,7 @@ export const UsuarioContext = createContext();
 export const UsuarioContextProvider = ( {children} ) => {
 
     const [usuarios, setUsuarios] = useState([]);
+    let error = null
 
     useEffect( () =>
         readUser()
@@ -23,7 +24,7 @@ export const UsuarioContextProvider = ( {children} ) => {
             body: JSON.stringify(dataUser),
             header:{
                 'Context-Type': 'application/json',
-            },
+            }
         })
         .then(() =>{
             alert("Usuario cadastrado com sucesso.");
@@ -32,22 +33,26 @@ export const UsuarioContextProvider = ( {children} ) => {
         .catch(()=> alert("Erro ao cadastrar Usuario!"))
     }
 
-    function editUser(modifiedDataUser, id) {
-        fetch("http://localhost:3000/listaUsuarios/" + id ,{
-            method: "PUT",
-            body: JSON.stringify(modifiedDataUser),
-            header:{
-                'Context-Type': 'application/json',
-            },
-        })
-        .then(() =>{
+    async function editUser(modifiedDataUser, id) {
+        try{
+            // debugger
+            await fetch("http://localhost:3000/listaUsuarios/" + id ,{
+                method: "PUT",
+                body: JSON.stringify(modifiedDataUser),
+                header:{
+                    'Context-Type': 'application/json',
+                }
+            })
             readList()//update locais
-        })
-        .catch(()=> alert("Erro ao atualizar o usuario!"))
+        }
+        catch(err){
+            alert("Erro ao atualizar o usuario!")
+            error = err.message
+        }
     }
 
     return(
-        <UsuarioContext.Provider value={{usuarios, registerUser, editUser}}>
+        <UsuarioContext.Provider value={{usuarios, registerUser, editUser, error}}>
             {children}
         </UsuarioContext.Provider>
     )

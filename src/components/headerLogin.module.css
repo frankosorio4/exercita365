@@ -1,0 +1,10 @@
+.headerContainer{
+    width: 100%;
+    position: fixed;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 3em;
+}
