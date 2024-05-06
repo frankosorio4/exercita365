@@ -36,7 +36,7 @@ Este repositório é de uma App que tem o esquema básico de gestionar Locais pa
 - Melhorar os estilos dos componentes e das páginas, em geral.
 - Implementar responsividade para telefones y tablets.
 - Fazer validação dos de Latitude y Longitude no cadastro dos locais.
-- Implementação do mapa para melhorar experiencia do usuário.
+- Implementação do mapa para la ubicação dos locais.
 - Implementação da função de editar usuário.
 - Validação para que o usuário só possa editar os locais cadastrados por ele.
 - Opção para o usuário colocar uma imagem do local a cadastrar.
