@@ -1,6 +1,6 @@
 # Exercita365
 
-O Exercita365 é uma plataforma que facilita o gerenciamento de exercícios e locais para atividades físicas serem praticadas. Os usuários podem cadastrar novos locais de exercícios, encontrar pontos próximos em um mapa interativo (ou lista), visualizar informações sobre os exercícios em cada ponto e registrar suas próprias contribuições para o sistema. O seu perfil chamou a atenção dos gestores da plataforma, para criar o MVP (Minimum Viable Product) da aplicação Front-End do software, que deverá ser construída utilizando a biblioteca React.
+O Exercita365 é uma plataforma que facilita o **gerenciamento** de exercícios e locais para atividades físicas serem praticadas. Os usuários podem **cadastrar novos locais** de exercícios, visualizar informações sobre os exercícios em cada ponto **registrar suas próprias contribuições** para o sistema. Foi ciado o MVP (Minimum Viable Product) da aplicação Front-End do software, utilizando a biblioteca React.
 
 ## Tecnologias utilizadas
 - React
