@@ -9,7 +9,15 @@ O Exercita365 é uma plataforma que facilita o gerenciamento de exercícios e lo
 
 - js
 
-![image](https://github.com/frankosorio4/exercita365/assets/141787907/cd326ce0-1c6a-4211-9d5a-506751085487)
+![image](https://github.com/frankosorio4/exercita365/assets/141787907/31ebbf41-3abd-4ea6-b1e9-89c024305c59)
+
+- Vite
+
+![image](https://github.com/frankosorio4/exercita365/assets/141787907/fcd22b89-54f1-4083-bbd6-da4b4e564caf)
+
+- Material MUI
+
+![image](https://github.com/frankosorio4/exercita365/assets/141787907/04207da9-136c-4cf3-ad4a-ad377ca0b527)
 
 ## Como executar
 
