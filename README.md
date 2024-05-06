@@ -50,3 +50,7 @@ Este repositório é de uma App que tem o esquema básico de gestionar Locais pa
 - Implementação da função de editar usuário.
 - Validação para que o usuário só possa editar os locais cadastrados por ele.
 - Opção para o usuário colocar uma imagem do local a cadastrar.
+
+## Descriçao do projeto
+
+https://drive.google.com/file/d/1vhuXI9PCjgIG2G49F9NZlm9vAt8sGwj3/view
