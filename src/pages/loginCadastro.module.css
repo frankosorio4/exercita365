@@ -51,6 +51,16 @@
     gap: 10px;
 }
 
+.divBtn2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+
 .pError{
     margin-top: 5px;
     color:red;

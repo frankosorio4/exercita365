@@ -12,70 +12,57 @@ function Login() {
     const navigate = useNavigate();
     const [showLoginForm, setShowLoginForm] = useState(true);
 
-    const { usuarios, registerUser } = useContext(UsuarioContext);
+    const { usuarios, registerUser, editUser} = useContext(UsuarioContext);
     // const { requestApi, data } = useContext(FetchContext);
 
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm();
     const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm()
 
-    async function editUser(usuarioEditado, id) {
-        try {
-            console.log("entro no fetch")
-            await fetch("http://localhost:3000/listaUsuarios/" + id, {
-                method: "PUT",
-                body: JSON.stringify(usuarioEditado),
-                header: {
-                    'Context-Type': 'application/json',
-                }
-            })
-            console.log("salio do fetch")
-        }
-        catch {
-            console.log("Erro ao atualizar o usuario!")
-        }
-    }
-
     async function onSubmit1(dataLogin) {
-        let listaUsuarios = usuarios;
-        //variables to validate
-        let usuarioExiste = false;
-        let usuarioId = "";
-        let usuarioEditado = [];
+        try {
+            //variables to validate
+            let usuarioExiste = false;
+            let usuarioEditado = [];
 
-        listaUsuarios.map(usuario => {
-            if (usuario.email == dataLogin.email) {
-                usuarioExiste = true;
-                usuarioId = usuario.id;
-                console.log("id", usuarioId);
-                if (usuario.senha == dataLogin.senha) {
+            usuarios.find(usuario => {
+                if (usuario.email === dataLogin.email) {
                     usuarioEditado = usuario;
-                    usuarioEditado.isLogged = true;
-                    console.log("usuarioEditado", usuarioEditado);
-                    editUser(usuarioEditado, usuarioId);
-                    localStorage.setItem("isLogged", true);
-                    localStorage.setItem("idUserLogged", usuario.id);
-                    console.log("go to home")
-                    window.location.href = "/";
-                    return;
+                    usuarioExiste = true;
+                    console.log("id", usuario.id);
+                    return true;
                 }
-                else {
-                    alert("usuario ou senha incorretas")
-                    return;
-                }
-            } else {
-                alert("usuario NO existe")
-                return;
+            });
+            if (usuarioEditado.senha === dataLogin.senha) {
+                usuarioEditado.isLogged = true;
+                // console.log("usuarioEditado", usuarioEditado);
+                await editUser(usuarioEditado, usuarioEditado.id)
+                localStorage.setItem("isLogged", true);
+                localStorage.setItem("idUserLogged", usuarioEditado.id);
+                // console.log("logged")
+                window.location.href = "/"
+                return true;
+            };
+            if (!usuarioExiste) {
+                alert("Usuario não cadastrado");
+                return true;
             }
-        })
+            else {
+                alert("Usuario ou senha incorretas");
+                return true;
+            };
+        }
+        catch (error) {
+            console.error("Error logging in:", error);
+            alert("Erro ao realizar login");
+
+        }
     };
 
     function onSubmit2(dataCadastro) {
-        debugger
-        let listaUsuarios = usuarios;
         let emailValido = true;
         let cpfValido = true;
 
-        listaUsuarios.find(usuario => {
+        usuarios.find(usuario => {
             if (usuario.email == dataCadastro.email) {
                 emailValido = false;
                 alert("Email ja cadastrado! Tente com outro Email")
@@ -522,13 +509,14 @@ function Login() {
                         </form>
                     )}
 
-                    <div className={style.divBtn}>
+                    <div className={style.divBtn2}>
+                        {showLoginForm ? <div>Nâo possui uma conta?</div> : <div>Já possui uma conta?</div>}
                         <Button
                             variant="outlined"
                             sx={{ fontWeight: 'bold' }}
                             onClick={() => setShowLoginForm(!showLoginForm)}
                         >
-                            {showLoginForm ? 'Nâo possui uma conta? Criar Conta' : 'Já possui uma conta? Faça Login'}
+                            {showLoginForm ? 'Criar Conta' : 'Faça Login'}
                         </Button>
                     </div>
                 </div>

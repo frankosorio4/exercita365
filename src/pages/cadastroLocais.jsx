@@ -3,20 +3,36 @@ import { TextField, Button } from "@mui/material"
 import { FormControlLabel, Checkbox, FormGroup, FormLabel } from "@mui/material"
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LocaisContext } from "../context/LocaisContext"
+import { UsuarioContext } from "../context/UsuariosContext"
 
 function Cadastro() {
 
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { registerLocal } = useContext(LocaisContext);
-    // const { requestApi, data } = useContext(FetchContext);
+    const {readUsuarioId} = useContext(UsuarioContext);
+
+    const [idLSTORAGE, setIdLStorage] = useState(localStorage.getItem('idUserLogged'));
+
+    console.log(idLSTORAGE)
+
+    // useEffect ( () =>{
+    //     readUsuarioDataId(idLSTORAGE)
+    // },[])
+    
+    // async function readUsuarioDataId(id) {
+    //     // debugger
+    //     let dataUsuarioActual =''; 
+    //     dataUsuarioActual = await readUsuarioId(id);
+    //     // console.log(dataUsuarioActual.cpf)
+    // }
 
     async function onSubmit(formValues) {
-        //TO DO if not valid cep
+
+        console.log(formValues)
         await registerLocal(formValues);
-        // console.log(formValues);
         navigate("/lista-locais",
             window.scrollTo({ bottom: 0 }))
     }
@@ -29,11 +45,15 @@ function Cadastro() {
             const response = await fetch(`https://viacep.com.br/ws/${cepInput}/json/`);
             if (response) {
                 const resp = await response.json();//NEEDS AWAIT
-                // console.log(resp)
                 setValue('bairro', resp.bairro);
                 setValue('logradouro', resp.logradouro);
                 setValue('estado', resp.uf);
                 setValue('cidade', resp.localidade);
+                const dataUsuarioActual = await readUsuarioId(idLSTORAGE);
+                if (dataUsuarioActual){
+                    setValue('cpf', dataUsuarioActual.cpf);
+                    setValue('email', dataUsuarioActual.email);
+                }
                 if (resp.erro) {
                     alert("Cep Invalido")
                 }
@@ -47,42 +67,6 @@ function Cadastro() {
         { label: 'Pilates', value: 'pilates' },
         { label: 'Nataçao', value: 'natacao' }
     ];
-
-    // const [localActual, setLocalActual] = useState({//we can delete  and deleted defaul value in inputs and button
-    //     nome: "",
-    //     cpf: "",
-    //     email: "",
-    //     descricao: "",
-    //     cep: "",
-    //     bairro: "",
-    //     logradouro: "",
-    //     estado: "",
-    //     cidade: "",
-    //     numeroCasa: "",
-    //     complemento: "",
-    //     latitude: "",
-    //     longitude: "",
-    //     localExcercises: ""
-    // })
-
-    // async function readLocalDataId(id) {//we can delete  and deleted defaul value in inputs and button
-    //     // debugger
-    //     const dataLocalActual = await readLocalId(id);
-    //     setValue('nome', dataLocalActual.nome);
-    //     setValue('cpf', dataLocalActual.cpf);
-    //     setValue('cep', dataLocalActual.cep);
-    //     setValue('email', dataLocalActual.email);
-    //     setValue('descricao', dataLocalActual.descricao);
-    //     setValue('bairro', dataLocalActual.cep);
-    //     setValue('logradouro', dataLocalActual.logradouro);
-    //     setValue('estado', dataLocalActual.estado);
-    //     setValue('cidade', dataLocalActual.cidade);
-    //     setValue('numeroCasa', dataLocalActual.numeroCasa);
-    //     setValue('complemento', dataLocalActual.complemento);
-    //     setValue('latitude', dataLocalActual.latitude);
-    //     setValue('longitude', dataLocalActual.longitude);
-    //     // setValue('localExcercises', dataLocalActual.localExcercises);
-    // }
 
     return (
         <div className="container">
@@ -118,14 +102,15 @@ function Cadastro() {
                         {errors.nome && <p className={styles.pError}>{errors.nome.message}</p>}
                     </div>
 
-                    <div className={styles.divTextField2}>
+                    {/* <div className={styles.divTextField2}>
                         <div className={styles.divTextField}>
                             <div>CPF do usuario</div>
                             <TextField
                                 name="cpf"
                                 placeholder="CPF"
                                 type="number"
-                                //defaultValue={localActual.cpf}
+                                // value={dataUsuarioActual.cpf}
+                                // defaultValue={dataUsuarioActual.cpf}
                                 sx={{ mt: 1, width: '18em' }}
                                 variant="outlined"
                                 {...register("cpf",
@@ -163,7 +148,7 @@ function Cadastro() {
                             />
                             {errors.email && <p className={styles.pError}>{errors.email.message}</p>}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className={styles.divTextField}>
                         <div>Descriçao do local</div>
@@ -181,7 +166,7 @@ function Cadastro() {
                                     required: "Campo Obrigatorio",
                                     minLength: {
                                         value: 5,
-                                        message: "Mínimo 50 caracteres"
+                                        message: "Mínimo 5 caracteres"
                                     },
                                     maxLength: {
                                         value: 300,
@@ -190,7 +175,6 @@ function Cadastro() {
                                 }
                             )
                             }
-                        // textValue={errors.descricao?.message || "Descrição breve do local"}
                         />
                         {errors.descricao && <p className={styles.pError}>{errors.descricao.message}</p>}
                     </div>
@@ -483,14 +467,6 @@ function Cadastro() {
                             }
                         >Voltar
                         </Button>
-                        {/* <Button
-                            variant="outlined"
-                            sx={{ fontWeight: 'bold' }}
-                            onClick={() => readLocalDataId("1")
-                            }
-                        >Ler local Borrar
-                        </Button> */}
-
                     </div>
                 </form>
             </div>

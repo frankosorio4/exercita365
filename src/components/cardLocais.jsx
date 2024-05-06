@@ -10,15 +10,15 @@ function CardLocais({ dadosLocal }) {
     const { deleteLocal } = useContext(LocaisContext);
     const navigate = useNavigate();
 
-    function goEditar(userId2Edit) {
-        console.log("editando: " + userId2Edit);
-        navigate(`/editar-local/${userId2Edit}`);
+    function goEditar(idEdit) {
+        // console.log("Editando Card Locais: " + idEdit);
+        navigate(`/editar-local/${idEdit}`);
     }
 
-    function goDelete(id) {
+    function goDelete(idDelete) {
         let apagar = confirm(`Deseja apagar o local "${dadosLocal.nome}"?`);
         if (apagar) {
-            deleteLocal(id);
+            deleteLocal(idDelete);
         };
     }
 

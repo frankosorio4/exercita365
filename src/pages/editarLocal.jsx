@@ -11,39 +11,31 @@ function EditarLocal() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { editLocal, readLocalId } = useContext(LocaisContext);
-    // const { requestApi, data } = useContext(FetchContext);
     const { id } = useParams();
 
     useEffect( () =>{
-        console.log("entro editando: ", id);
+        console.log("Editando: ", id);
         readLocalDataId(id);
     },[id])
 
     async function onSubmit(formValues) {
-        //TO DO if not valid cep
-        // let dataModificada = getValues();//all the values at any time
-        editLocal(formValues,id)// from LocaisContext
+        await editLocal(formValues,id)// from LocaisContext
         navigate("/lista-locais")
     }
 
     const onblurSearchCep = async () => {
         // debugger
         let cepInput = getValues('cep');
-
         if (cepInput.length == 8) {
             const response = await fetch(`https://viacep.com.br/ws/${cepInput}/json/`);
             if (response) {
                 const resp = await response.json();//NEEDS AWAIT
-                // console.log(resp)
                 setValue('bairro', resp.bairro);
                 setValue('logradouro', resp.logradouro);
                 setValue('estado', resp.uf);
                 setValue('cidade', resp.localidade);
-                // setValue("isLogged", false);
-                // console.log(resp.erro)
                 if (resp.erro) {
                     alert("Cep Invalido")
-                    // console.log("Cep Invalido")
                 }
             }
         }
@@ -498,13 +490,6 @@ function EditarLocal() {
                             }
                         >Voltar
                         </Button>
-                        {/* <Button
-                            variant="outlined"
-                            sx={{ fontWeight: 'bold' }}
-                            onClick={() => readLocalDataId("1")
-                            }
-                        >Ler local Manualmente Borrar
-                        </Button> */}
                     </div>
                 </form>
             </div>
