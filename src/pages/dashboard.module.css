@@ -7,10 +7,53 @@
     gap: 20px;
 }
 
+.divIntrodution{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-image: url("../assets/pexels-leonardho-1552252-2.jpg");
+    background-size: cover;
+    padding: 10px;
+    width: 100vw;
+    height: 90vh;
+}
+
 .titulo{
     text-align: center;
     margin-bottom: 30px;
+    font-size: 48px;
 }
+
+.introdution{
+    width: 90vw;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.introdution2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: lightgray;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 9vw 8vh;
+}
+
+.introdution2 ul{
+    margin: 10px 30px;
+}
+
+.introdution2 li{
+    margin: 20px auto;
+}
+
 
 .cardOverview{
     display: flex;

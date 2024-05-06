@@ -29,7 +29,13 @@ function CardLocais({ dadosLocal }) {
                 </h2>
                 <div className={styles.div2DadosLocal}>
                     <span>
-                        Endereço: {dadosLocal.logradouro} {dadosLocal.numeroCasa}, {dadosLocal.bairro}. {dadosLocal.cidade}, {dadosLocal.estado}
+                        <b>Descriçao: </b> {dadosLocal.descricao}.
+                    </span>
+                    <span>
+                        <b>Endereço: </b>{dadosLocal.logradouro} {dadosLocal.numeroCasa}, {dadosLocal.bairro}. {dadosLocal.cidade}, {dadosLocal.estado}
+                    </span>
+                    <span>
+                        <b>Cadastrado por: </b>{dadosLocal.email}.
                     </span>
                 </div>
                 <div className={styles.btn}>
