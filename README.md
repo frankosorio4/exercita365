@@ -35,11 +35,13 @@ O Exercita365 é uma plataforma que facilita o gerenciamento de exercícios e lo
   Iniciar os servidores *vite* e *Json-server*. Abra o repositório no VScode e no terminal dele inicie os comandos:
   1. ```npm run dev```
   2. ```json-server --watch ./data/db.json```
-Tem que executar cada comando em terminais diferentes.
+
+  Tem que executar cada comando em terminais diferentes.
      
 ## Melhorias
 
 Este repositório é de uma App que tem o esquema básico de gestionar Locais para exercitar-se. Por isso tem coisas que podem ser melhoradas.
+- Criar uma API que faça a conexão com um banco de dados.
 - Implementar uma melhor forma de validação de dados y segurança.
 - Melhorar os estilos dos componentes e das páginas, em geral.
 - Implementar responsividade para telefones y tablets.
