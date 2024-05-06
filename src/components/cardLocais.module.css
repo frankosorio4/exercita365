@@ -1,0 +1,23 @@
+.card_container{
+    box-shadow: .2em .2em .8em  black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    margin: 30px auto;
+    padding: 25px;
+    gap: 15px;
+}
+
+.div2DadosLocal{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    gap: 15px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
