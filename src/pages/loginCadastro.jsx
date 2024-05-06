@@ -12,11 +12,11 @@ function Login() {
     const navigate = useNavigate();
     const [showLoginForm, setShowLoginForm] = useState(true);
 
-    const { usuarios, registerUser, editUser} = useContext(UsuarioContext);
+    const { usuarios, registerUser, editUser } = useContext(UsuarioContext);
     // const { requestApi, data } = useContext(FetchContext);
 
     const { register: registerLogin, handleSubmit: handleSubmitLogin, formState: { errors: loginErrors } } = useForm();
-    const { register, handleSubmit, formState: { errors }, getValues, setValue } = useForm()
+    const { register, handleSubmit, formState: { errors }, getValues, setValue, unregister } = useForm()
 
     async function onSubmit1(dataLogin) {
         try {
@@ -58,7 +58,7 @@ function Login() {
         }
     };
 
-    function onSubmit2(dataCadastro) {
+    async function onSubmit2(dataCadastro) {
         let emailValido = true;
         let cpfValido = true;
 
@@ -74,6 +74,11 @@ function Login() {
                 return true// to stop the loop
             }
         });
+        if (dataCadastro.senha != dataCadastro.confirmarSenha) {
+            alert("As senhas providenciadas nâo coinciden.")
+            return;
+        }
+        delete dataCadastro.confirmarSenha;//to delete this value before save
 
         if (emailValido && cpfValido) {
             registerUser(dataCadastro);
@@ -107,7 +112,7 @@ function Login() {
         <div>
             <HeaderLogin />
             <div className="container">
-                <div className="divContainer">
+                <div className={style.divContainer}>
                     <div className={style.chooseOption} >
                         <h1>{showLoginForm ? 'Login' : 'Cadastro de usuario'}</h1>
                     </div>
@@ -472,30 +477,58 @@ function Login() {
                                 </div>
                             </div>
 
-                            <div className={style.divTextField}>
-                                <div>Senha</div>
-                                <TextField
-                                    name="senha"
-                                    type="password"
-                                    sx={{ mt: 1, width: '18em' }}
-                                    variant="outlined"
-                                    placeholder="Senha"
-                                    {...register("senha",
-                                        {
-                                            required: "Campo Obrigatorio",
-                                            minLength: {
-                                                value: 6,
-                                                message: "Mínimo 6 caracteres."
-                                            },
-                                            maxLength: {
-                                                value: 12,
-                                                message: "Máximo de 12 caracteres"
+                            <div className={style.divTextField2} >
+                                <div className={style.divTextField}>
+                                    <div>Senha</div>
+                                    <TextField
+                                        name="senha"
+                                        type="password"
+                                        sx={{ mt: 1, width: '18em' }}
+                                        variant="outlined"
+                                        placeholder="Senha"
+                                        {...register("senha",
+                                            {
+                                                required: "Campo Obrigatorio",
+                                                minLength: {
+                                                    value: 6,
+                                                    message: "Mínimo 6 caracteres."
+                                                },
+                                                maxLength: {
+                                                    value: 12,
+                                                    message: "Máximo de 12 caracteres"
+                                                }
                                             }
+                                        )
                                         }
-                                    )
-                                    }
-                                />
-                                {errors.senha && <p className={style.pError}>{errors.senha.message}</p>}
+                                    />
+                                    {errors.senha && <p className={style.pError}>{errors.senha.message}</p>}
+                                </div>
+
+                                <div className={style.divTextField}>
+                                    <div> Confirmar Senha</div>
+                                    <TextField
+                                        name="confirmarSenha"
+                                        type="password"
+                                        sx={{ mt: 1, width: '18em' }}
+                                        variant="outlined"
+                                        placeholder="Confirmar Senha"
+                                        {...register("confirmarSenha",
+                                            {
+                                                required: "Campo Obrigatorio",
+                                                minLength: {
+                                                    value: 5,
+                                                    message: "Mínimo 5 caracteres"
+                                                },
+                                                maxLength: {
+                                                    value: 25,
+                                                    message: "Máximo de 25 caracteres"
+                                                }
+                                            }
+                                        )
+                                        }
+                                    />
+                                    {errors.senha && <p className={style.pError}>{errors.senha.message}</p>}
+                                </div>
                             </div>
 
                             <div className={style.divBtn}>
@@ -526,3 +559,5 @@ function Login() {
 }
 
 export default Login;
+
+// https://www.pexels.com/search/gym%20equipment/

@@ -85,7 +85,7 @@
     {
       "id": "7",
       "nome": "Kaori",
-      "cpf": "12245698745",
+      "cpf": "12245698744",
       "sexo": "Feminino",
       "dataNasc": "2024-04-26",
       "email": "kaori7@email.com",
@@ -102,7 +102,7 @@
     {
       "id": "8",
       "nome": "Kaori",
-      "cpf": "12245698745",
+      "cpf": "12245698747",
       "sexo": "Feminino",
       "dataNasc": "2024-04-26",
       "email": "kaori8@email.com",
@@ -226,14 +226,49 @@
       "estado": "SC",
       "senha": "987654",
       "isLogged": false
+    },
+    {
+      "id": "7a6e",
+      "nome": "Everton Diaz",
+      "cpf": "11122233344",
+      "sexo": "Maculino",
+      "dataNasc": "2015-01-14",
+      "email": "everton@email.com",
+      "cep": "88047600",
+      "numeroCasa": "5",
+      "complemento": "6",
+      "logradouro": "Rua Tenente Calandrini",
+      "bairro": "Carianos",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "senha": "321654",
+      "confirmarSenha": "321654",
+      "isLogged": false
+    },
+    {
+      "id": "bbf6",
+      "nome": "Everton Diaz",
+      "cpf": "12365478911",
+      "sexo": "Maculino",
+      "dataNasc": "2024-05-29",
+      "email": "everton1@email.com",
+      "cep": "88047450",
+      "numeroCasa": "1",
+      "complemento": "1",
+      "logradouro": "Rua José Gonçalves",
+      "bairro": "Carianos",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "senha": "123456",
+      "isLogged": true
     }
   ],
   "listaLocais": [
     {
-      "nome": "frank sevices",
-      "cpf": "12345678901",
-      "email": "frankosorio4@email.com",
-      "descricao": "Se o valor for maior ou igual a 65...",
+      "nome": "Academia de ginástica",
+      "cpf": "12345678910",
+      "email": "frank1@email.com",
+      "descricao": "Local com aparelhos de musculação, aulas coletivas e profissionais para te auxiliar no treino",
       "cep": "88047480",
       "numeroCasa": "535",
       "complemento": "12",
@@ -250,90 +285,88 @@
       "id": "2"
     },
     {
-      "id": "3",
-      "nome": "andrea natacion",
-      "cpf": "12457812457",
-      "email": "frank_colmenares@estudante.sesisenai.org.br",
-      "descricao": "Se o valor for maior ou igual a 65, o código executará o bloco de código dentro do if e imprimirá a mensagem correspondente. Caso contrário, ele executará o bloco de código dentro do else e imprimirá a segunda mensagem no terminal.",
+      "nome": "Estúdio de pilates",
+      "cpf": "08635193008",
+      "email": "donie@email.com",
+      "descricao": "Ambiente focado no método Pilates, que melhora postura, flexibilidade e força.",
       "cep": "88047470",
       "numeroCasa": "253",
       "complemento": "12",
+      "logradouro": "Rua Valdemiro Júlio Gonçalves",
+      "bairro": "88047470",
+      "cidade": "Florianópolis",
+      "estado": "SC",
       "latitude": "12.7",
       "longitude": "13",
       "localExcercises": [
         "musculacao",
-        "trilhas"
+        "pilates"
       ],
-      "bairro": "Carianos",
-      "logradouro": "Rua Valdemiro Júlio Gonçalves",
-      "estado": "SC",
-      "cidade": "Florianópolis"
+      "id": "3"
     },
     {
-      "id": "4",
-      "nome": "Nataçao Carianos",
-      "cpf": "12345678901",
-      "email": "frankosorio4@email.com",
-      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia harum unde quam quidem aut accusantium, atque tenetur maxime tempora, maiores delectus, odit nisi id possimus similique? Voluptate quas soluta omnis!",
+      "nome": "Quadra de esportes",
+      "cpf": "03532040050",
+      "email": "luis@email.com",
+      "descricao": "Espaço para praticar esportes como futebol, vôlei, basquete e futsal.",
       "cep": "88047475",
       "numeroCasa": "535",
       "complemento": "12",
+      "logradouro": "Servidão Hédio Adelino Narciso",
+      "bairro": "88047475",
+      "cidade": "Florianópolis",
+      "estado": "SC",
       "latitude": "15",
       "longitude": "15",
       "localExcercises": [
-        "trilhas",
-        "pilates"
+        "musculacao",
+        "caminhada"
       ],
-      "bairro": "Carianos",
-      "logradouro": "Servidão Hédio Adelino Narciso",
-      "estado": "SC",
-      "cidade": "Florianópolis"
+      "id": "4"
     },
     {
-      "id": "5",
-      "nome": "Gym Kaori",
-      "cpf": "15975325855",
-      "email": "fra@email.com",
-      "descricao": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam ducimus labore nostrum minima fugiat ut quia incidunt quae eius, veritatis dignissimos! Placeat, quos? Sunt quos sed nam cum, minima quisquam.",
+      "nome": "Centro de artes marciais",
+      "cpf": "52678470032",
+      "email": "ana@email.com",
+      "descricao": "Academia especializada em lutas como judô, karatê, Muay Thai e Jiu-Jitsu.",
       "cep": "88047490",
       "numeroCasa": "159",
       "complemento": "5",
+      "logradouro": "Rua Ilde Schwambach Starosky",
+      "bairro": "88047490",
+      "cidade": "Florianópolis",
+      "estado": "SC",
       "latitude": "25",
       "longitude": "13",
       "localExcercises": [
-        "trilhas",
-        "pilates"
+        "outra"
       ],
-      "bairro": "Carianos",
-      "logradouro": "Rua Ilde Schwambach Starosky",
-      "estado": "SC",
-      "cidade": "Florianópolis"
+      "id": "5"
     },
     {
-      "id": "88c7",
-      "nome": "frank",
-      "cpf": "32145698777",
-      "email": "frank_colmenares@estudante.sesisenai.org.br",
-      "descricao": "SADCVV",
+      "nome": "Pista de corrida:",
+      "cpf": "90923405020",
+      "email": "sara@email.com",
+      "descricao": "Local ao ar livre ou indoor com percurso demarcado para corrida.",
       "cep": "88047470",
       "numeroCasa": "15",
       "complemento": "10",
       "logradouro": "Rua Valdemiro Júlio Gonçalves",
-      "bairro": "Carianos",
+      "bairro": "88047470",
       "cidade": "Florianópolis",
       "estado": "SC",
       "latitude": "10",
       "longitude": "10",
       "localExcercises": [
-        "musculacao",
-        "natacao"
-      ]
+        "caminhada"
+      ],
+      "id": "88c7"
     },
     {
-      "nome": "frank sevices",
-      "cpf": "12345678901",
-      "email": "frankosorio4@email.com",
-      "descricao": "Se o valor for maior ou igual a 70.",
+      "nome": "Piscina Carianos",
+      "cpf": "12245698745",
+      "email": "kaori6@email.com",
+      "descricao": "Local para natação, hidroginástica e outros exercícios aquáticos.",
       "cep": "88047480",
       "numeroCasa": "535",
       "complemento": "12",
@@ -344,31 +377,28 @@
       "latitude": "12.3",
       "longitude": "55.4",
       "localExcercises": [
-        "musculacao",
         "natacao"
       ],
       "id": "cf0b"
     },
     {
-      "id": "0ff1",
-      "nome": "Trilhas Floripa",
-      "descricao": "trilhas caminhada",
+      "nome": "Estúdio de escalada",
+      "cpf": "12245698744",
+      "email": "kaori7@email.com",
+      "descricao": "Local com paredes artificiais para praticar o esporte de escalada indoor.",
       "cep": "88047475",
       "numeroCasa": "5",
       "complemento": "7",
       "logradouro": "Servidão Hédio Adelino Narciso",
-      "bairro": "Carianos",
+      "bairro": "88047475",
       "cidade": "Florianópolis",
       "estado": "SC",
       "latitude": "15",
       "longitude": "16",
       "localExcercises": [
-        "musculacao",
-        "trilhas",
-        "natacao"
+        "outra"
       ],
-      "cpf": "12345678910",
-      "email": "frank1@email.com"
+      "id": "0ff1"
     }
   ]
 }

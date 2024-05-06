@@ -1,6 +1,6 @@
 import styles from "./cadastroLocais.module.css"
 import { TextField, Button } from "@mui/material"
-import { FormControlLabel, Checkbox, FormGroup, FormLabel } from "@mui/material"
+import { FormControlLabel, Checkbox, FormGroup, FormLabel} from "@mui/material"
 import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { useContext, useEffect, useState } from "react"
@@ -12,25 +12,13 @@ function Cadastro() {
     const navigate = useNavigate();
     const { register, handleSubmit, getValues, setValue, formState: { errors } } = useForm()
     const { registerLocal } = useContext(LocaisContext);
-    const {readUsuarioId} = useContext(UsuarioContext);
+    const { readUsuarioId } = useContext(UsuarioContext);
 
     const [idLSTORAGE, setIdLStorage] = useState(localStorage.getItem('idUserLogged'));
 
     console.log(idLSTORAGE)
 
-    // useEffect ( () =>{
-    //     readUsuarioDataId(idLSTORAGE)
-    // },[])
-    
-    // async function readUsuarioDataId(id) {
-    //     // debugger
-    //     let dataUsuarioActual =''; 
-    //     dataUsuarioActual = await readUsuarioId(id);
-    //     // console.log(dataUsuarioActual.cpf)
-    // }
-
     async function onSubmit(formValues) {
-
         console.log(formValues)
         await registerLocal(formValues);
         navigate("/lista-locais",
@@ -50,7 +38,7 @@ function Cadastro() {
                 setValue('estado', resp.uf);
                 setValue('cidade', resp.localidade);
                 const dataUsuarioActual = await readUsuarioId(idLSTORAGE);
-                if (dataUsuarioActual){
+                if (dataUsuarioActual) {
                     setValue('cpf', dataUsuarioActual.cpf);
                     setValue('email', dataUsuarioActual.email);
                 }
@@ -61,11 +49,20 @@ function Cadastro() {
         }
     };
 
+    // const chunkSize = 3;
+    // const optionChunks = [];
+    // for (let i = 0; i < options.length; i += chunkSize) {
+    //     optionChunks.push(options.slice(i, i + chunkSize));
+    // }
+
     const options = [
-        { label: 'Musculaçao', value: 'musculacao' },
-        { label: 'Trillas', value: 'trilhas' },
-        { label: 'Pilates', value: 'pilates' },
-        { label: 'Nataçao', value: 'natacao' }
+          { label: 'Musculaçao', value: 'musculacao' },
+          { label: 'Trillas', value: 'trilhas' },
+          { label: 'Caminhada', value: 'caminhada' },
+          { label: 'Pilates', value: 'pilates' },
+          { label: 'Nataçao', value: 'natacao' },
+          { label: 'Surf', value: 'surf' },
+          { label: 'Outra', value: 'outra' }
     ];
 
     return (
@@ -101,54 +98,6 @@ function Cadastro() {
                         />
                         {errors.nome && <p className={styles.pError}>{errors.nome.message}</p>}
                     </div>
-
-                    {/* <div className={styles.divTextField2}>
-                        <div className={styles.divTextField}>
-                            <div>CPF do usuario</div>
-                            <TextField
-                                name="cpf"
-                                placeholder="CPF"
-                                type="number"
-                                // value={dataUsuarioActual.cpf}
-                                // defaultValue={dataUsuarioActual.cpf}
-                                sx={{ mt: 1, width: '18em' }}
-                                variant="outlined"
-                                {...register("cpf",
-                                    {
-                                        required: "Campo Obrigatorio",
-                                        minLength: {
-                                            value: 11,
-                                            message: "Mínimo 11 caracteres"
-                                        },
-                                        maxLength: {
-                                            value: 11,
-                                            message: "Máximo de 11 caracteres"
-                                        }
-                                    }
-                                )
-                                }
-                            />
-                            {errors.cpf && <p className={styles.pError}>{errors.cpf.message}</p>}
-                        </div>
-                        <div className={styles.divTextField}>
-                            <div>E-mail de usuario</div>
-                            <TextField
-                                name="email"
-                                type="email"
-                                //defaultValue={localActual.email}
-                                sx={{ mt: 1, width: '18em' }}
-                                variant="outlined"
-                                placeholder="usuario@email.com"
-                                {...register("email",
-                                    {
-                                        required: "Campo Obrigatorio"
-                                    }
-                                )
-                                }
-                            />
-                            {errors.email && <p className={styles.pError}>{errors.email.message}</p>}
-                        </div>
-                    </div> */}
 
                     <div className={styles.divTextField}>
                         <div>Descriçao do local</div>
@@ -431,8 +380,18 @@ function Cadastro() {
                     </div>
 
                     <div>
+                        {/* {optionChunks.map((chunk, rowIndex) => (
+                            <FormGroup row key={rowIndex}>
+                                {chunk.map((option) => (
+                                    <FormControlLabel
+                                        key={option.value}
+                                        control={<Checkbox {...register('localExcercises', { required: true })} value={option.value} />}
+                                        label={option.label}
+                                    />
+                                ))}
+                            </FormGroup>
+                        ))} */}
                         <FormLabel component="legend">Praticas esportivas:</FormLabel>
-                        {/* <FormGroup className={styles.formGroupOptions}> */}
                         <FormGroup row>
                             {options.map((option) => (
                                 <FormControlLabel
@@ -440,6 +399,8 @@ function Cadastro() {
                                     key={option.value}
                                     control={
                                         <Checkbox
+                                            // name="localExcercises"
+                                            // key={option.value}
                                             {...register('localExcercises', { required: true })}
                                             value={option.value}
                                         />

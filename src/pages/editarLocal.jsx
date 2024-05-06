@@ -44,8 +44,11 @@ function EditarLocal() {
     const options = [
         { label: 'Musculaçao', value: 'musculacao' },
         { label: 'Trillas', value: 'trilhas' },
+        { label: 'Caminhada', value: 'caminhada' },
         { label: 'Pilates', value: 'pilates' },
-        { label: 'Nataçao', value: 'natacao' }
+        { label: 'Nataçao', value: 'natacao' },
+        { label: 'Surf', value: 'surf' },
+        { label: 'Outra', value: 'outra' }
     ];
 
     const [localActual, setLocalActual] = useState({//it is needed?

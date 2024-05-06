@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     width: 80vw;
+    margin-top: 40px;
 }
 
 .chooseOption{
