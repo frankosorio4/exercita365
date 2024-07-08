@@ -34,8 +34,8 @@ Exercita365 is a platform that enables users to search for and find exercise loc
   Start the server *vite* e *Json-server*. Open the repository in **vs code** and run the following commands:
     1. ```npm run dev```
     2. ```json-server --watch ./data/db.json```
-
- You need to execute these commands in different consoles at the same time.
+  
+  You need to execute these 2 commands in different consoles at the same time.
      
 ## Improvements
 
