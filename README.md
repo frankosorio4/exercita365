@@ -26,7 +26,7 @@ Exercita365 is a platform that enables users to search for and find exercise loc
   6. Material MUI. <!--```npm install @mui/material @emotion/react @emotion/styled```-->
 
 ## Como executar
-  - Clone o repositóry.
+  - Clone the repositóry.
 
   - Open the terminal of **vscode** and rn the following command ```npm install```.
 
@@ -39,18 +39,15 @@ Exercita365 is a platform that enables users to search for and find exercise loc
      
 ## Improvements
 
-Este repositório é de uma App que tem o esquema básico de gestionar Locais para exercitar-se. Por isso tem coisas que podem ser melhoradas.
-- Criar uma API que faça a conexão com um banco de dados.
-- Implementar uma melhor forma de validação de dados y segurança.
-- Melhorar os estilos dos componentes e das páginas, em geral.
-- Implementar responsividade para telefones y tablets.
-- Fazer validação dos de Latitude y Longitude no cadastro dos locais.
-- Implementação do mapa para la ubicação dos locais.
-- Implementação da função de editar usuário.
-- Validação para que o usuário só possa editar os locais cadastrados por ele.
-- Opção para o usuário colocar uma imagem do local a cadastrar.
-
-
+- Create a backend project to manage the data safely and connect it with a database.
+- Create an API that connects the backend.
+- Improve the styles of the components.
+- Create a responsive application.
+- Validate latitude and longitude data.
+- Implement a map for the locals.
+- Implement an edit function for users.
+- Validation that allows the user to only edit locals registered by them.
+- Implement an option for the user to add an image when registering a new local.
 
 <!-- # Exercita365
 O Exercita365 é uma plataforma que facilita o **gerenciamento** de exercícios e locais para atividades físicas serem praticadas. Os usuários podem **cadastrar novos locais** de exercícios, visualizar informações sobre os exercícios em cada ponto **registrar suas próprias contribuições** para o sistema. Foi ciado o MVP (Minimum Viable Product) da aplicação Front-End do software, utilizando a biblioteca React.
