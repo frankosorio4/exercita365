@@ -28,7 +28,7 @@ Exercita365 is a platform that enables users to search for and find exercise loc
 ## Como executar
   - Clone the repositóry.
 
-  - Open the terminal of **vscode** and rn the following command ```npm install```.
+  - Open the terminal of **vscode** and run the following command ```npm install```.
 
   - Run:
   Start the server *vite* e *Json-server*. Open the repository in **vs code** and run the following commands:
@@ -46,8 +46,12 @@ Exercita365 is a platform that enables users to search for and find exercise loc
 - Validate latitude and longitude data.
 - Implement a map for the locals.
 - Implement an edit function for users.
-- Validation that allows the user to only edit locals registered by them.
+- Validation that allows the user to edit only locals registered by them.
 - Implement an option for the user to add an image when registering a new local.
+
+## Project presentation
+
+https://drive.google.com/file/d/1vhuXI9PCjgIG2G49F9NZlm9vAt8sGwj3/view
 
 <!-- # Exercita365
 O Exercita365 é uma plataforma que facilita o **gerenciamento** de exercícios e locais para atividades físicas serem praticadas. Os usuários podem **cadastrar novos locais** de exercícios, visualizar informações sobre os exercícios em cada ponto **registrar suas próprias contribuições** para o sistema. Foi ciado o MVP (Minimum Viable Product) da aplicação Front-End do software, utilizando a biblioteca React.
